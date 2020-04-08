@@ -1,0 +1,38 @@
+﻿
+
+@{
+    ViewBag.Title = "Acerca de nosotros";
+    ViewBag.Message = "Veterinaria Safari";
+    // Description - Used by search engines. Aim for more than 160 characters.
+    ViewBag.Description = "Sitio web de la veterinaria safari";
+    // Author - (Optional) Used by search engines. The author of the page.
+    ViewBag.Author = "Andres Benitez";
+    // Referrer - (Optional) Controls what is sent in the HTTP referrer header when a client navigates from your page
+    //            to an external site for increased user privacy and security. See ReferrerMode for more information.
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+
+    // Add Twitter Card and Open Graph social meta tags so we can customize what happens when our page is shared
+    // on these social networks. Note that other social networks like Google+, Pintrest and others also use these.
+    // There are dozens of different Twitter Card or Open Graph object types we could add, a different one is added
+    // on each page as an example.
+    // These helpers make it very easy to add the meta tags. For best performance, see what tags are generated and
+    // hand code them yourself instead of using these helpers.
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@andres.benitez");
+    ViewBag.OpenGraph = new OpenGraphWebsite(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/content/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 })
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Creemos que todo empieza en elegir bien a nuestro compañero, no todas las razas ni todos los carácteres son iguales y en función de nuestro estilo de vida o nuestra manera de ser debemos elegir uno u otro y no dejarnos llevar por las modas o aspecto físico, nosotros te ayudamos a decidir , de hecho pensamos que es fundamental dar bien ese paso. Para los amantes de los gatos contamos con Juan Perez que cada día que los conoce se enamora más de esta especie, que os asesorará para que nuestro felino sea feliz tanto medica como mentalmente. También contamos con Gabriela Lpez, Veterinaria, y María Garcia, Auxiliar veterinaria.</p>
+
+<img src="~/img/1.jpg" alt="Medico"width="900" height="600">
+<img src="~/img/2.jpg" alt="Raton"width="900" height="600">
+<img src="~/img/3.jpg" alt="Conejo"width="900" height="600">

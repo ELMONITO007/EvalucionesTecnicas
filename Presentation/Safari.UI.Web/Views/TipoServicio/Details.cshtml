@@ -1,0 +1,54 @@
+﻿@model Safari.Entities.TipoServicio
+@{
+    ViewBag.Title = "Crear Especie";
+    // Description - Used by search engines. Aim for more than 160 characters.
+    ViewBag.Description = "Sitio web de la veterinaria safari";
+    // Author - (Optional) Used by search engines. The author of the page.
+    ViewBag.Author = "Andres Benitez";
+    // Referrer - (Optional) Controls what is sent in the HTTP referrer header when a client navigates from your page
+    //            to an external site for increased user privacy and security. See ReferrerMode for more information.
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+
+    // Add Twitter Card and Open Graph social meta tags so we can customize what happens when our page is shared
+    // on these social networks. Note that other social networks like Google+, Pintrest and others also use these.
+    // There are dozens of different Twitter Card or Open Graph object types we could add, a different one is added
+    // on each page as an example.
+    // These helpers make it very easy to add the meta tags. For best performance, see what tags are generated and
+    // hand code them yourself instead of using these helpers.
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@andres.benitez");
+    ViewBag.OpenGraph = new OpenGraphWebsite(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/content/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 })
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tipo Servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

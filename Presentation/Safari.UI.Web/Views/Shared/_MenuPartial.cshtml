@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li> @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+        <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ABM <span class="caret"></span></a>
+
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/cita">Cita</a></li>
+                <li><a href="/especie">Especie</a></li>
+                <li><a href="/sala">Sala</a></li>
+                <li class="divider"></li>
+                <li><a href="/Movimiento">Movimiento</a></li>
+                <li><a href="/Precio">Precio</a></li>
+                <li class="divider"></li>
+                <li><a href="/TipoMovimiento">Tipo de movimiento</a></li>
+                <li><a href="/TipoServicio">Tipo de servicio</a></li>
+                <li class="divider"></li>
+                <li><a href="/Medico">Medico</a></li>
+                <li><a href="/Cliente">Cliente</a></li>
+                <li><a href="/Paciente">Paciente</a></li>
+            </ul>
+
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Desloguearse</a></li>
+
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Loguearse", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
