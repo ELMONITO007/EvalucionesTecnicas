@@ -11,15 +11,13 @@ namespace Safari.Entities
 {
     [Serializable]
     [DataContract]
-    public abstract class Respuesta : EntityBase
+    public   class Orden : Respuesta
     {
+        [DataMember]
+        [DisplayName("Orden")]
         [Required]
-        [DataMember]
-        [DisplayName("Respuesta")]
-        [DataType(DataType.Text, ErrorMessage = "Ingrese texto")]
-        public string LaRespuesta { get; set; }
+       
+        public int NumeroOrden { get; set; }
 
-        [DataMember]
-        public override int Id { get; set; }
     }
 }
