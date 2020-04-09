@@ -21,5 +21,7 @@ namespace Safari.Entities
 
         [DataMember]
         public override int Id { get; set; }
+        [DataMember]
+        public  Pregunta pregunta { get; set; }
     }
 }

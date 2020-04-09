@@ -19,5 +19,14 @@ namespace Safari.Entities
        
         public int NumeroOrden { get; set; }
 
+        public Orden(Pregunta pr)
+        {
+            pregunta =new Pregunta();
+            pregunta = pr;
+        }
+        public Orden()
+        {
+          
+        }
     }
 }

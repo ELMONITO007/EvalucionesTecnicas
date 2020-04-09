@@ -51,6 +51,8 @@
     <Compile Include="DataAccessComponent.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="NivelDAC.cs" />
+    <Compile Include="OrdenDAC.cs" />
+    <Compile Include="PreguntaDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,14 @@ namespace Safari.Entities
         [DisplayName("Respuesta Correcta")]
 
         public bool Correcta { get; set; }
-        
+        public MultipleChoice(Pregunta pr)
+        {
+            pregunta = new Pregunta();
+            pregunta = pr;
+        }
+        public MultipleChoice()
+        {
+
+        }
     }
 }
