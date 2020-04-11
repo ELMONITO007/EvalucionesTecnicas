@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DataAccessComponent.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="MultipleChoiceDAC.cs" />
     <Compile Include="NivelDAC.cs" />
     <Compile Include="OrdenDAC.cs" />
     <Compile Include="PreguntaDAC.cs" />

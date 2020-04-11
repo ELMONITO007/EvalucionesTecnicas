@@ -93,6 +93,27 @@ namespace Safari.Data
             return orden;
         }
 
+        public List<Orden> listaRespuestaOrden(int id_pregunta)
+        {
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@";
+
+            List<Orden> result = new List<Orden>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id_pregunta);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        Orden orden = LoadOrden(dr);
+                        result.Add(orden);
+                    }
+                }
+            }
+            return result;
+        }
+
         public void Update(Orden entity)
         {
             const string SQL_STATEMENT = "update Respuesta set Respuesta=@Respuesta,Orden=@Orden,ID_Pregunta=@ID_Pregunta where ID_Respuesta=@Id ";
