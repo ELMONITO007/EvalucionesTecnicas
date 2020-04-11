@@ -95,7 +95,7 @@ namespace Safari.Data
 
         public List<Orden> listaRespuestaOrdenAlAzar(int id_pregunta)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@ and orden is not Null order by NEWID()";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@Id and orden is not Null order by NEWID()";
 
             List<Orden> result = new List<Orden>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -127,6 +127,27 @@ namespace Safari.Data
                 db.AddInParameter(cmd, "@ID_Pregunta", DbType.Int32, entity.pregunta.Id);
                 db.ExecuteNonQuery(cmd);
             }
+        }
+
+        public List<Orden> listaRespuestaCorrecta(int id_pregunta)
+        {
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@Id and orden is not Null order by Orden";
+
+            List<Orden> result = new List<Orden>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id_pregunta);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        Orden orden = LoadOrden(dr);
+                        result.Add(orden);
+                    }
+                }
+            }
+            return result;
         }
     }
 }

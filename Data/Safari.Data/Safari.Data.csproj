@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriaDAC.cs" />
     <Compile Include="DataAccessComponent.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="MultipleChoiceDAC.cs" />
