@@ -13,125 +13,125 @@ using System.Web.Http;
 namespace Safari.Services.Http
 {
     [RoutePrefix("api/Cita")]
-    public class CitaServicesHTTP : ApiController, IServiceHttp<CitaResponse, CitaRequest>
+    public class CitaServicesHTTP  /*:ApiController, IServiceHttp<CitaResponse, CitaRequest>*/
     {
-        [HttpPost]
-        [Route("Actualizar")]
-        public void Actualizar(CitaRequest agregarRequest)
-        {
-            try
-            {
+        //[HttpPost]
+        //[Route("Actualizar")]
+        //public void Actualizar(CitaRequest agregarRequest)
+        //{
+        //    try
+        //    {
 
-                var bc = new CitaComponent();
-                bc.Update(agregarRequest.cita);
+        //        var bc = new CitaComponent();
+        //        bc.Update(agregarRequest.cita);
 
-            }
-            catch (Exception ex)
-            {
-                var httpError = new HttpResponseMessage()
-                {
-                    StatusCode = (HttpStatusCode)422, // UNPROCESSABLE ENTITY
-                    ReasonPhrase = ex.Message
-                };
-                throw new HttpResponseException(httpError);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var httpError = new HttpResponseMessage()
+        //        {
+        //            StatusCode = (HttpStatusCode)422, // UNPROCESSABLE ENTITY
+        //            ReasonPhrase = ex.Message
+        //        };
+        //        throw new HttpResponseException(httpError);
+        //    }
+        //}
 
-        [HttpPost]
-        [Route("Agregar")]
-        public void Crear(CitaRequest agregarRequest)
-        {
+        //[HttpPost]
+        //[Route("Agregar")]
+        //public void Crear(CitaRequest agregarRequest)
+        //{
 
-            try
-            {
+        //    try
+        //    {
 
-                var bc = new CitaComponent();
-                bc.Create(agregarRequest.cita);
+        //        var bc = new CitaComponent();
+        //        bc.Create(agregarRequest.cita);
 
-            }
-            catch (Exception ex)
-            {
-                var httpError = new HttpResponseMessage()
-                {
-                    StatusCode = (HttpStatusCode)422, // UNPROCESSABLE ENTITY
-                    ReasonPhrase = ex.Message
-                };
-                throw new HttpResponseException(httpError);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var httpError = new HttpResponseMessage()
+        //        {
+        //            StatusCode = (HttpStatusCode)422, // UNPROCESSABLE ENTITY
+        //            ReasonPhrase = ex.Message
+        //        };
+        //        throw new HttpResponseException(httpError);
+        //    }
+        //}
 
-        [HttpPost]
-        [Route("Eliminar")]
-        public void Eliminar(int id)
-        {
-            try
-            {
+        //[HttpPost]
+        //[Route("Eliminar")]
+        //public void Eliminar(int id)
+        //{
+        //    try
+        //    {
 
-                var bc = new CitaComponent();
-                bc.Delete(id);
+        //        var bc = new CitaComponent();
+        //        bc.Delete(id);
 
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                var httpError = new HttpResponseMessage()
-                {
-                    StatusCode = (HttpStatusCode)422,
-                    ReasonPhrase = ex.Message
-                };
-                throw new HttpResponseException(httpError);
+        //        var httpError = new HttpResponseMessage()
+        //        {
+        //            StatusCode = (HttpStatusCode)422,
+        //            ReasonPhrase = ex.Message
+        //        };
+        //        throw new HttpResponseException(httpError);
 
-            }
-        }
+        //    }
+        //}
 
-        [HttpGet]
-        [Route("ListarTodos")]
-        public CitaResponse ListarTodos()
-        {
-            try
-            {
-                var response = new CitaResponse();
-                var bc = new CitaComponent();
-                response.obtenerTodos = bc.Read();
-                return response;
+        //[HttpGet]
+        //[Route("ListarTodos")]
+        //public CitaResponse ListarTodos()
+        //{
+        //    try
+        //    {
+        //        var response = new CitaResponse();
+        //        var bc = new CitaComponent();
+        //        response.obtenerTodos = bc.Read();
+        //        return response;
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                var httpError = new HttpResponseMessage()
-                {
-                    StatusCode = (HttpStatusCode)422,
-                    ReasonPhrase = ex.Message
-                };
-                throw new HttpResponseException(httpError);
+        //        var httpError = new HttpResponseMessage()
+        //        {
+        //            StatusCode = (HttpStatusCode)422,
+        //            ReasonPhrase = ex.Message
+        //        };
+        //        throw new HttpResponseException(httpError);
 
-            }
-        }
-        [HttpGet]
-        [Route("ObtenerUno")]
-        public CitaResponse ObtenerUno(int id)
-        {
-            try
-            {
-                var response = new CitaResponse();
-                var bc = new CitaComponent();
-                response.obtenerUno = bc.ReadBy(id);
-                return response;
+        //    }
+        //}
+        //[HttpGet]
+        //[Route("ObtenerUno")]
+        //public CitaResponse ObtenerUno(int id)
+        //{
+        //    try
+        //    {
+        //        var response = new CitaResponse();
+        //        var bc = new CitaComponent();
+        //        response.obtenerUno = bc.ReadBy(id);
+        //        return response;
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                var httpError = new HttpResponseMessage()
-                {
-                    StatusCode = (HttpStatusCode)422,
-                    ReasonPhrase = ex.Message
-                };
-                throw new HttpResponseException(httpError);
+        //        var httpError = new HttpResponseMessage()
+        //        {
+        //            StatusCode = (HttpStatusCode)422,
+        //            ReasonPhrase = ex.Message
+        //        };
+        //        throw new HttpResponseException(httpError);
 
-            }
-        }
+        //    }
+        //    }
     }
 }

@@ -11,11 +11,11 @@ namespace Safari.Services.Contracts.Request
     [DataContract]
     public class CitaRequest
     {
-        [DataMember]
-        public Cita cita { get; set; }
-        public  CitaRequest()
-        {
-            cita = new Cita();
-        }
+        //[DataMember]
+        //public Cita cita { get; set; }
+        //public  CitaRequest()
+        //{
+        //    cita = new Cita();
+        //}
     }
 }

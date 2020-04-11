@@ -13,13 +13,13 @@ namespace Safari.Services.Contracts
    public class CitaResponse
     {
         [DataMember]
-        public List<Cita> obtenerTodos { get; set; }
+       public List<Pregunta> obtenerTodos { get; set; }
 
-        [DataMember]
-        public Cita obtenerUno { get; set; }
+        //[DataMember]
+        //public Cita obtenerUno { get; set; }
 
-        [DataMember]
-        public Cita agregar { get; set; }
+        //[DataMember]
+        //public Cita agregar { get; set; }
 
     }
 }

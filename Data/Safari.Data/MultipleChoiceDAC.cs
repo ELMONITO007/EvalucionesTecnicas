@@ -53,7 +53,7 @@ namespace Safari.Data
 
         public List<MultipleChoice> Read()
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcto,ID_Pregunta from Respuesta where Activo=1";
+            const string SQL_STATEMENT = "Select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and Correcta is not null";
 
             List<MultipleChoice> result = new List<MultipleChoice>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -73,7 +73,7 @@ namespace Safari.Data
 
         public MultipleChoice ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@id";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@id and Correcta is not null";
             MultipleChoice multipleChoice = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -106,9 +106,9 @@ namespace Safari.Data
             }
         }
 
-        public List<MultipleChoice> listaRespuestaMultipleChoice(int id_pregunta)
+        public List<MultipleChoice> listaRespuestaMultipleChoiceAlAzar(int id_pregunta)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@Id and correcta is not null order by NEWID()";
 
             List<MultipleChoice> result = new List<MultipleChoice>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -121,6 +121,29 @@ namespace Safari.Data
                     {
                         MultipleChoice multiple = LoadMultipleChoice(dr);
                         result.Add(multiple);
+                    }
+                }
+            }
+            return result;
+        }
+
+        public List< MultipleChoice> ObtenerRespuestaCorrecta(int id)
+        {
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and Correcta=1  and ID_Pregunta=@Id and Correcta is not null ";
+          
+
+            List<MultipleChoice> result = new List<MultipleChoice>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+           
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        MultipleChoice multipleChoice = LoadMultipleChoice(dr);
+                        result.Add(multipleChoice);
                     }
                 }
             }

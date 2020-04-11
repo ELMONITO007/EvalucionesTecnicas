@@ -102,5 +102,31 @@ namespace Safari.Data
                 db.ExecuteNonQuery(cmd);
             }
         }
+
+        public List<Pregunta> ObtenerPreguntarAlAzarPorNivel(int id_Nivel, int cantidad)
+        {
+           
+             string SQL_STATEMENT = "select top " + cantidad + " * from Pregunta where ID_Nivel=@Id and activo=1 order by NEWID() ";
+
+            List<Pregunta> result = new List<Pregunta>();
+           
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id_Nivel);
+                db.AddInParameter(cmd, "@Cantidad", DbType.Int32, cantidad);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        Pregunta pregunta = LoadPregunta(dr);
+                        result.Add(pregunta);
+                    }
+                }
+            }
+            return result;
+
+        }
+
     }
 }

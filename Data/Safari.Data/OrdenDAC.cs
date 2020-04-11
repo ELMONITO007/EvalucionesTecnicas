@@ -55,7 +55,7 @@ namespace Safari.Data
 
         public List<Orden> Read()
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1";
+            const string SQL_STATEMENT = "lect ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and orden is not Null";
 
             List<Orden> result = new List<Orden>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -75,7 +75,7 @@ namespace Safari.Data
 
         public Orden ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@id";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@id and orden is not Null";
             Orden   orden = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -93,9 +93,9 @@ namespace Safari.Data
             return orden;
         }
 
-        public List<Orden> listaRespuestaOrden(int id_pregunta)
+        public List<Orden> listaRespuestaOrdenAlAzar(int id_pregunta)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@ and orden is not Null order by NEWID()";
 
             List<Orden> result = new List<Orden>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

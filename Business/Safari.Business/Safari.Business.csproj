@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CitaComponent.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="NivelComponent.cs" />
+    <Compile Include="PreguntaComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
