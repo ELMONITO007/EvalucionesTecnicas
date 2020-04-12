@@ -12,6 +12,16 @@ namespace Safari.Data
 {
     public class CategoriaDAC : DataAccessComponent, IRepository<Categoria>
     {
+        private Categoria LoadCategoria(IDataReader dr)
+        {
+            Categoria categoria = new Categoria();
+            categoria.Id = GetDataValue<int>(dr, "ID_Categoria");
+            categoria.LaCategoria = GetDataValue<string>(dr, "Categoria");
+            categoria.Descripcion = GetDataValue<string>(dr, "Descripcion");
+            return categoria;
+        }
+
+
         public Categoria Create(Categoria entity)
         {
             const string SQL_STATEMENT = "insert into categoria(Categoria,Descripcion,Activo)values(@Categoria,@Descripcion,1) ";
@@ -40,17 +50,56 @@ namespace Safari.Data
 
         public List<Categoria> Read()
         {
-            throw new NotImplementedException();
+            const string SQL_STATEMENT = "select ID_Categoria,Categoria,Descripcion from categoria where activo=1";
+
+            List<Categoria> result = new List<Categoria>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        Categoria categoria = LoadCategoria(dr);
+                        result.Add(categoria);
+                    }
+                }
+            }
+            return result;
         }
 
         public Categoria ReadBy(int id)
         {
-            throw new NotImplementedException();
+            const string SQL_STATEMENT = "select ID_Categoria,Categoria,Descripcion from categoria where activo=1 and ID_Categoria=@Id";
+            Categoria categoria = null;
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        categoria = LoadCategoria(dr);
+                    }
+                }
+            }
+            return categoria;
         }
 
         public void Update(Categoria entity)
         {
-            throw new NotImplementedException();
+            const string SQL_STATEMENT = "update Categoria set Categoria=@Categoria, Descripcion=@Descripcion where ID_Categoria=@Id ";
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, entity.Id);
+                db.AddInParameter(cmd, "@Categoria", DbType.String, entity.LaCategoria);
+                db.AddInParameter(cmd, "@Descripcion", DbType.String, entity.Descripcion);
+                db.ExecuteNonQuery(cmd);
+            }
         }
     }
 }

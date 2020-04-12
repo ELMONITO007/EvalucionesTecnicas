@@ -103,24 +103,25 @@ namespace Safari.Data
             }
         }
 
-        public List<Pregunta> ObtenerPreguntarAlAzarPorNivel(int id_Nivel, int cantidad)
+        public List<Pregunta> ObtenerPreguntarAlAzarPorNivelYCategoria(Pregunta pregunta, int cantidad)
         {
            
-             string SQL_STATEMENT = "select top " + cantidad + " * from Pregunta where ID_Nivel=@Id and activo=1 order by NEWID() ";
+             string SQL_STATEMENT = "select top " + cantidad + " p.ID_Pregunta,Pregunta,ID_Nivel,Imagen from Pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta where ID_Nivel=@Id_Nivel and Activo=1 and pc.ID_Categoria=@ID_categoria order by NEWID() ";
 
             List<Pregunta> result = new List<Pregunta>();
            
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
-                db.AddInParameter(cmd, "@Id", DbType.Int32, id_Nivel);
+                db.AddInParameter(cmd, "@Id_Nivel", DbType.Int32, pregunta.nivel.Id);
                 db.AddInParameter(cmd, "@Cantidad", DbType.Int32, cantidad);
+                db.AddInParameter(cmd, "@ID_categoria", DbType.Int32, pregunta.categoria.Id);
                 using (IDataReader dr = db.ExecuteReader(cmd))
                 {
                     while (dr.Read())
                     {
-                        Pregunta pregunta = LoadPregunta(dr);
-                        result.Add(pregunta);
+                        Pregunta pr = LoadPregunta(dr);
+                        result.Add(pr);
                     }
                 }
             }
