@@ -29,6 +29,9 @@ namespace Safari.Entities
         public string Imagen { get; set; }
 
         [DataMember]
+        public TipoPregunta tipoPregunta { get; set; }
+
+        [DataMember]
         public List<Respuesta> ListaRespuesta{ get; set; }
 
         public Categoria categoria { get; set; }
@@ -38,6 +41,7 @@ namespace Safari.Entities
             ListaRespuesta = new List<Respuesta>();
             nivel = new Nivel();
             categoria = new Categoria();
+            tipoPregunta = new TipoPregunta();
         }
 }
 }
