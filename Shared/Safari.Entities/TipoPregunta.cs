@@ -12,6 +12,7 @@ namespace Safari.Entities
     [DataContract]
     public   class TipoPregunta : EntityBase
     {
+        [DataMember]
         public override int Id { get; set; }
         [DataMember]
         [DisplayName("Tipo de Pregunta")]

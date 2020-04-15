@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriaComponent.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="NivelComponent.cs" />
     <Compile Include="PreguntaComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoPreguntaComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Safari.Data\Safari.Data.csproj">
