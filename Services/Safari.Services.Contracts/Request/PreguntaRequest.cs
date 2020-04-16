@@ -6,16 +6,18 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Safari.Services.Contracts.Request
 {
     [DataContract]
-    public class CitaRequest
+  public  class PreguntaRequest : Request<Pregunta>
     {
-        //[DataMember]
-        //public Cita cita { get; set; }
-        //public  CitaRequest()
-        //{
-        //    cita = new Cita();
-        //}
+        [DataMember]
+        public Pregunta Objeto { get; set; }
+
+        public PreguntaRequest()
+        {
+            Objeto = new Pregunta();
+        }
     }
 }

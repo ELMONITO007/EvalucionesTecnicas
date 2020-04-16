@@ -66,7 +66,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CitaServicesHTTP.cs" />
+    <Compile Include="CategoriaServicesHTTP.cs" />
+    <Compile Include="NivelServicesHTTP.cs" />
+    <Compile Include="OrdenServicesHTTP.cs" />
+    <Compile Include="PreguntaServiceHTTP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceHttp.cs" />
     <Compile Include="TipoPreguntaServicesHTTP.cs" />

@@ -39,7 +39,7 @@ namespace Safari.Data
 
         public void Delete(int id)
         {
-            const string SQL_STATEMENT = "update Categoria set Activo=0 where Id=@Id";
+            const string SQL_STATEMENT = "update Categoria set Activo=0 where ID_Categoria=@Id";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {

@@ -14,6 +14,7 @@ namespace Safari.Entities
     [DataContract]
     public class Categoria : EntityBase
     {
+        [DataMember]
         public override int Id { get; set; }
 
         [DataMember]

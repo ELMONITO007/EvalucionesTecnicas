@@ -45,13 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaResponse.cs" />
+    <Compile Include="MultipleChoiceResponse.cs" />
     <Compile Include="NivelResponse.cs" />
+    <Compile Include="OrdenResponse.cs" />
+    <Compile Include="PreguntaResponse.cs" />
     <Compile Include="Request\CategoriaRequest.cs" />
-    <Compile Include="Request\CitaRequest.cs" />
     <Compile Include="Contracts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\MultipleChoiceRequest.cs" />
     <Compile Include="Request\NivelRequest.cs" />
+    <Compile Include="Request\PreguntaRequest.cs" />
     <Compile Include="Request\Request.cs" />
+    <Compile Include="Request\RequestOrden.cs" />
     <Compile Include="Request\TipoPreguntaRequest.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="TipoPreguntaResponse.cs" />

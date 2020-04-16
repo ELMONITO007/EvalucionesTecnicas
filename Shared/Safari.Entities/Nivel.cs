@@ -13,6 +13,7 @@ namespace Safari.Entities
     [DataContract]
     public class Nivel : EntityBase
     {
+        [DataMember]
         public override int Id { get; set; }
 
 
