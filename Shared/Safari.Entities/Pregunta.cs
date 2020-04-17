@@ -34,7 +34,7 @@ namespace Safari.Entities
 
         [DataMember]
         public List<Respuesta> ListaRespuesta{ get; set; }
-
+        [DataMember]
         public Categoria categoria { get; set; }
 
         public Pregunta ()

@@ -17,5 +17,7 @@ namespace Safari.Services.Contracts
         public Pregunta obtenerUno { get; set; }
         [DataMember]
         public Pregunta agregar { get; set; }
+        [DataMember]
+        public List<Pregunta> ObtenerPreguntasAlAzar { get; set; }
     }
 }

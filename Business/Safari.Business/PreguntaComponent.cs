@@ -50,13 +50,13 @@ namespace Safari.Business
 
 
         }
-        public  List<Pregunta> ObtenerPreguntasAlAzar()
+        public  List<Pregunta> ObtenerPreguntasAlAzar(Pregunta pregunta, int cantidad)
         {
 
 
             List<Pregunta> result = default(List<Pregunta>);
             var preguntaNivel = new PreguntaDAC();
-            result = preguntaNivel.Read();
+            result = preguntaNivel.ObtenerPreguntarAlAzarPorNivelYCategoria(pregunta,cantidad);
             return result;
         }
 

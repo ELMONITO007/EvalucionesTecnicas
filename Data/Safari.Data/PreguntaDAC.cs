@@ -25,7 +25,7 @@ namespace Safari.Data
 
         public Pregunta Create(Pregunta entity)
         {
-            const string SQL_STATEMENT = "insert into Pregunta (Pregunta,Imagen,ID_Nivel,ID_TipoPregunta)values(@Pregunta,@Imagen,@ID_Nivel,@ID_TipoPregunta)  insert into PreguntaCategoria(ID_Pregunta,ID_Categoria)values ((select ID_Pregunta from Pregunta where Pregunta=@Pregunta),@ID_Categoria)";
+            const string SQL_STATEMENT = "insert into Pregunta (Pregunta,Imagen,ID_Nivel,ID_TipoPregunta,activo)values(@Pregunta,@Imagen,@ID_Nivel,@ID_TipoPregunta,1)  insert into PreguntaCategoria(ID_Pregunta, ID_Categoria)values((select ID_Pregunta from Pregunta where Pregunta = @Pregunta),@ID_Categoria)";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -33,10 +33,12 @@ namespace Safari.Data
                 db.AddInParameter(cmd, "@Imagen", DbType.String, entity.Imagen);
                 db.AddInParameter(cmd, "@ID_Nivel", DbType.Int32, entity.nivel.Id);
                 db.AddInParameter(cmd, "@ID_Categoria", DbType.Int32, entity.categoria.Id);
-                db.AddInParameter(cmd, "@Imagen", DbType.String, entity.Imagen);
+                
                 db.AddInParameter(cmd, "@ID_TipoPregunta", DbType.String, entity.tipoPregunta.Id);
                 entity.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
+
+
 
 
             return entity;
@@ -44,7 +46,7 @@ namespace Safari.Data
 
         public void Delete(int id)
         {
-            const string SQL_STATEMENT = "update Pregunta set Active=0 where Id=@Id";
+            const string SQL_STATEMENT = "update Pregunta set Activo=0 where Id_pregunta=@Id";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -55,7 +57,7 @@ namespace Safari.Data
 
         public List<Pregunta> Read()
         {
-            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where activo=1";
+            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1";
 
             List<Pregunta> result = new List<Pregunta>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -75,7 +77,7 @@ namespace Safari.Data
 
         public Pregunta ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where activo=1 and ID_Pregunta=@id";
+            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1 and p.ID_Pregunta=@id";
             Pregunta pregunta = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -100,11 +102,12 @@ namespace Safari.Data
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, entity.Id);
                 db.AddInParameter(cmd, "@Pregunta", DbType.String, entity.LaPregunta);
                 db.AddInParameter(cmd, "@Imagen", DbType.String, entity.Imagen);
                 db.AddInParameter(cmd, "@ID_Nivel", DbType.Int32, entity.nivel.Id);
                 db.AddInParameter(cmd, "@ID_Categoria", DbType.Int32, entity.categoria.Id);
-                db.AddInParameter(cmd, "@Imagen", DbType.String, entity.Imagen);
+       
                 db.AddInParameter(cmd, "@ID_TipoPregunta", DbType.String, entity.tipoPregunta.Id);
                 db.ExecuteNonQuery(cmd);
             }
@@ -113,7 +116,7 @@ namespace Safari.Data
         public List<Pregunta> ObtenerPreguntarAlAzarPorNivelYCategoria(Pregunta pregunta, int cantidad)
         {
            
-             string SQL_STATEMENT = "select top " + cantidad + " p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from Pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta where ID_Nivel=@Id_Nivel and Activo=1 and pc.ID_Categoria=@ID_categoria order by NEWID() ";
+             string SQL_STATEMENT = "select top " + cantidad + " p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,pc.ID_Categoria from Pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta where ID_Nivel=@Id_Nivel and p.Activo=1 and pc.ID_Categoria=@ID_categoria order by NEWID() ";
 
             List<Pregunta> result = new List<Pregunta>();
            
