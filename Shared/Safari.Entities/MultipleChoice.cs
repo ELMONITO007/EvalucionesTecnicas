@@ -25,7 +25,7 @@ namespace Safari.Entities
         }
         public MultipleChoice()
         {
-
+            pregunta = new Pregunta();
         }
     }
 }

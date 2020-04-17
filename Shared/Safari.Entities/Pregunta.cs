@@ -11,7 +11,7 @@ namespace Safari.Entities
 {
     [Serializable]
     [DataContract]
-  public  class Pregunta : EntityBase
+  public   class Pregunta : EntityBase
     {
         [DataMember]
         public override int Id { get; set; }

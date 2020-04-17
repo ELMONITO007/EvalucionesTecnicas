@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaServicesHTTP.cs" />
+    <Compile Include="MultipleChoiceServicesHTTP.cs" />
     <Compile Include="NivelServicesHTTP.cs" />
     <Compile Include="OrdenServicesHTTP.cs" />
     <Compile Include="PreguntaServiceHTTP.cs" />

@@ -26,7 +26,7 @@ namespace Safari.Entities
         }
         public Orden()
         {
-          
+            pregunta = new Pregunta();
         }
     }
 }

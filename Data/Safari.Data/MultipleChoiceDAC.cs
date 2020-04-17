@@ -73,7 +73,7 @@ namespace Safari.Data
 
         public MultipleChoice ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@id and Correcta is not null";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Respuesta=@id and Correcta is not null";
             MultipleChoice multipleChoice = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -108,7 +108,7 @@ namespace Safari.Data
 
         public List<MultipleChoice> listaRespuestaMultipleChoiceAlAzar(int id_pregunta)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@Id and correcta is not null order by NEWID()";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Correcta,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@Id and correcta is not null  order by NEWID()";
 
             List<MultipleChoice> result = new List<MultipleChoice>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
