@@ -159,16 +159,16 @@ namespace Safari.Services.Http
         }
         [HttpPost]
         [Route("obtenerpreguntaFacil")]
-        public PreguntaResponse obtenerpreguntaFacil(NivelRequest nivelRequest, int cantidad,CategoriaRequest categoriaRequest)
+        public PreguntaResponse obtenerLaspreguntas(List<PreguntaRequest>preguntaRequests, int CantidadFacil, int CantidadMedio, int CantidadDificil)
         {
 
             try
             {
                 var response = new PreguntaResponse();
-
-           
+                var preguntar = new PreguntaRequest();
+            
                 var bc = new PreguntaComponent();
-                response.ObtenerTodo = bc.obtenerpregunta(nivelRequest.Objeto, cantidad,categoriaRequest.Objeto);
+                response.ObtenerTodo = bc.obtenerLaspreguntas(preguntar.ObtenerPreguntas(preguntaRequests),CantidadFacil,CantidadMedio,CantidadDificil);
 
                 return response;
 

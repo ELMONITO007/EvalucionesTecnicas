@@ -11,6 +11,7 @@ namespace Safari.Services.Contracts.Request
     [DataContract]
     public class CategoriaRequest : Request<Categoria>
     {
+       
         [DataMember]
         public Categoria Objeto { get; set; }
 

@@ -78,7 +78,7 @@ namespace Safari.Business
 
         public List<Pregunta> obtenerLaspreguntas(List<Pregunta> preguntas, int CantidadFacil, int CantidadMedio, int CantidadDificil)
         {
-            List<Pregunta> result = default(List<Pregunta>);
+            List<Pregunta> result = new List<Pregunta>();
             Pregunta temp = new Pregunta();
             foreach (var item in preguntas)
             {
