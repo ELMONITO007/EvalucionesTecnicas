@@ -12,6 +12,7 @@ namespace Safari.Services.Contracts.Request
     [DataContract]
     public class NivelRequest : Request<Nivel>
     {
+        [DataMember]
         public Nivel Objeto { get; set; }
         public NivelRequest()
         {

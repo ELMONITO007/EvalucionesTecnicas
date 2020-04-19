@@ -44,7 +44,7 @@ namespace Safari.Data
 
         public void Delete(int id)
         {
-            const string SQL_STATEMENT = "update Respuesta set Active=0 where ID_Respuesta=@Id";
+            const string SQL_STATEMENT = "update Respuesta set Activo=0 where ID_Respuesta=@Id";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -55,7 +55,7 @@ namespace Safari.Data
 
         public List<Orden> Read()
         {
-            const string SQL_STATEMENT = "lect ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and orden is not Null";
+            const string SQL_STATEMENT = "Select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and orden is not Null";
 
             List<Orden> result = new List<Orden>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -75,7 +75,7 @@ namespace Safari.Data
 
         public Orden ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Pregunta=@id and orden is not Null";
+            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Respuesta=@id and orden is not Null";
             Orden   orden = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

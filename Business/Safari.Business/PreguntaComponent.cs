@@ -33,7 +33,7 @@ namespace Safari.Business
             result = preguntaNivel.Read();
             return result;
         }
-        
+
 
         public override Pregunta ReadBy(int id)
         {
@@ -50,15 +50,67 @@ namespace Safari.Business
 
 
         }
-        public  List<Pregunta> ObtenerPreguntasAlAzar(Pregunta pregunta, int cantidad)
+        public List<Pregunta> ObtenerPreguntasAlAzar(Pregunta pregunta, int cantidad)
         {
 
 
             List<Pregunta> result = default(List<Pregunta>);
             var preguntaNivel = new PreguntaDAC();
-            result = preguntaNivel.ObtenerPreguntarAlAzarPorNivelYCategoria(pregunta,cantidad);
+            result = preguntaNivel.ObtenerPreguntarAlAzarPorNivelYCategoria(pregunta, cantidad);
             return result;
         }
 
+
+
+        public List<Pregunta> obtenerpregunta(Nivel nivel, int Cantidad, Categoria categoria)
+        {
+            List<Pregunta> result = default(List<Pregunta>);
+            Pregunta temp = new Pregunta();
+            temp.nivel = nivel;
+            temp.categoria = categoria;
+
+            result = ObtenerPreguntasAlAzar(temp, Cantidad);
+
+
+            return result;
+        }
+
+
+        public List<Pregunta> obtenerLaspreguntas(List<Pregunta> preguntas, int CantidadFacil, int CantidadMedio, int CantidadDificil)
+        {
+            List<Pregunta> result = default(List<Pregunta>);
+            Pregunta temp = new Pregunta();
+            foreach (var item in preguntas)
+            {
+                List<Pregunta> listaTemp = default(List<Pregunta>);
+                if (item.nivel.ElNivel=="Facil")
+                {
+                    listaTemp = obtenerpregunta(item.nivel, CantidadFacil, item.categoria);
+                    foreach (Pregunta item2 in listaTemp)
+                    {
+                        result.Add(item2);
+                    }
+                }
+                else if (item.nivel.ElNivel == "Medio")
+                {
+
+                    listaTemp = obtenerpregunta(item.nivel, CantidadMedio, item.categoria);
+                    foreach (Pregunta item2 in listaTemp)
+                    {
+                        result.Add(item2);
+                    }
+                }
+                else if (item.nivel.ElNivel == "Dificil")
+                {
+                    listaTemp = obtenerpregunta(item.nivel, CantidadDificil, item.categoria);
+                    foreach (Pregunta item2 in listaTemp)
+                    {
+                        result.Add(item2);
+                    }
+                }
+
+            }
+            return result;
+        }
     }
 }
