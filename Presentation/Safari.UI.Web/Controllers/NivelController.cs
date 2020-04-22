@@ -29,13 +29,13 @@ namespace Safari.UI.Web.Controllers
             var lista = nivel.ObtenerUno(id);
             return View(lista);
         }
-
+      
         // GET: Nivel/Create
         public ActionResult Create()
         {
             return View();
         }
-
+      
         // POST: Nivel/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)

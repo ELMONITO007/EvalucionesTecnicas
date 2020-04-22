@@ -5,61 +5,40 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-    <link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
 
-
+<div>
     <table class="table">
         <tr>
-
             <th>
-                @Html.DisplayNameFor(model => model.ElNivel)
+              <h4>Nivel de Pregunta</h4>
             </th>
             <th></th>
-
         </tr>
-        
+
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ElNivel)
-        </td>
-        <td>
-            @using (Html.BeginForm("Edit", "Editar"))
-            {
-                <button class="TurquesaButton">Editar</button>
-
-
-            }
-        </td>
-        <td>
-            @using (Html.BeginForm("Details", "Detalles"))
-            {
-                <button class="TurquesaButton">Detalles</button>
-
-
-            }
-        </td>
-        <td>
-        @using (Html.BeginForm("Delete", "Eliminar"))
-        {
-            <button class="TurquesaButton">Eliminar</button>
-
-
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ElNivel)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                </td>
+            </tr>
         }
 
 
-        </td>
-    </tr>
-            
-        }
+
+
 
     </table>
-    <p>
-        @using (Html.BeginForm("Create", "Crear"))
-        {
-            <button class="AzulButton">Crear</button>
 
+    <div >
+       <p>           <input type="button" class="AzulButton "  style="float:right" value="Crear" onclick="location.href='@Url.Action("Create", "Nivel")'" /></p>
+        
 
-        }
-    </p>
+    </div>
+</div>

@@ -83,7 +83,7 @@ body {
     cursor: pointer;
     color: #ffffff;
     font-family: Arial;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: bold;
     padding: 13px 30px;
     text-decoration: none;
@@ -1027,6 +1027,7 @@ pre code {
     flex: 0 0 8.33333%;
     max-width: 8.33333%;
   }
+
   .col-md-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%;

@@ -2082,11 +2082,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Nivel\Index.cshtml" />
     <Content Include="Views\Nivel\Details.cshtml" />
     <Content Include="Views\Nivel\Create.cshtml" />
-    <Content Include="Views\Nivel\Edit.cshtml" />
     <Content Include="Views\Nivel\Delete.cshtml" />
+    <Content Include="Views\Nivel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

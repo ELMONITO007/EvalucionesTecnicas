@@ -4,33 +4,42 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Nivel</h4>
+        <h4>Crear un Nivel de Pregunta</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
         <div class="form-group">
-            @Html.LabelFor(model => model.ElNivel, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+
+            <div class="col-lg-10">
+                <label for="textArea" class="col-lg-9 control-label">Nivel</label>
                 @Html.EditorFor(model => model.ElNivel, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ElNivel, "", new { @class = "text-danger" })
+
+            </div>
+            <hr />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Crear" class="TurquesaButton" />
+                </div>
+            </div>
+
+            <div class="col-lg-10">
+                @Html.ActionLink("Volver al inicio", "Index")
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
