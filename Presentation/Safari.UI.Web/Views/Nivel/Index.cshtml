@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Safari.Entities.Nivel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ElNivel)
+            </th>
+            <th></th>
+
+        </tr>
+        
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ElNivel)
+        </td>
+        <td>
+            @using (Html.BeginForm("Edit", "Editar"))
+            {
+                <button class="TurquesaButton">Editar</button>
+
+
+            }
+        </td>
+        <td>
+            @using (Html.BeginForm("Details", "Detalles"))
+            {
+                <button class="TurquesaButton">Detalles</button>
+
+
+            }
+        </td>
+        <td>
+        @using (Html.BeginForm("Delete", "Eliminar"))
+        {
+            <button class="TurquesaButton">Eliminar</button>
+
+
+        }
+
+
+        </td>
+    </tr>
+            
+        }
+
+    </table>
+    <p>
+        @using (Html.BeginForm("Create", "Crear"))
+        {
+            <button class="AzulButton">Crear</button>
+
+
+        }
+    </p>
