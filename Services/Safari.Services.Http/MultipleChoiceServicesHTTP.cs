@@ -60,13 +60,13 @@ namespace Safari.Services.Http
         }
         [HttpPost]
         [Route("Eliminar")]
-        public void Eliminar(int id)
+        public void Eliminar(MultipleChoiceRequest agregarRequest)
         {
             try
             {
 
                 var bc = new MultipleChoiceComponent();
-                bc.Delete(id);
+                bc.Delete(agregarRequest.Objeto.Id);
 
 
             }

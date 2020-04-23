@@ -218,6 +218,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NivelController.cs" />
+    <Compile Include="Controllers\TipoPreguntaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2083,9 +2084,15 @@
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Nivel\Details.cshtml" />
-    <Content Include="Views\Nivel\Create.cshtml" />
     <Content Include="Views\Nivel\Delete.cshtml" />
     <Content Include="Views\Nivel\Index.cshtml" />
+    <Content Include="Views\Nivel\Create.cshtml" />
+    <Content Include="Views\Nivel\Edit.cshtml" />
+    <Content Include="Views\TipoPregunta\Index.cshtml" />
+    <Content Include="Views\TipoPregunta\Details.cshtml" />
+    <Content Include="Views\TipoPregunta\Create.cshtml" />
+    <Content Include="Views\TipoPregunta\Edit.cshtml" />
+    <Content Include="Views\TipoPregunta\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

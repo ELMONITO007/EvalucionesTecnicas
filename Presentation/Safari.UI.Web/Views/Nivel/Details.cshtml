@@ -5,14 +5,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
 
-<div>
-    <h4>Nivel</h4>
+<div class="align-content-lg-center">
+    <h4>Detalles del Nivel de Pregunta</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ElNivel)
+            Nivel de Pregunta
         </dt>
 
         <dd>
@@ -20,8 +20,14 @@
         </dd>
 
     </dl>
+    <div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+
+        </p>
+    </div>
+  
+        <input type="button" class="AzulButton " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Nivel")'" />
+
+  
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

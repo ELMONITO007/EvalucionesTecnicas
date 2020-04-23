@@ -11,7 +11,7 @@ namespace Safari.Services.Http
         Tone ListarTodos();
       void Actualizar(Ttwo agregarRequest);
         Tone ObtenerUno(int id);
-        void Eliminar(int id);
+        void Eliminar(Ttwo agregarRequest);
        void Crear(Ttwo agregarRequest);
 
     }

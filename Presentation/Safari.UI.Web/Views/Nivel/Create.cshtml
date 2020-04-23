@@ -4,42 +4,37 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Crear un Nivel de Pregunta</h4>
-        <hr />
-
-
-
-        <div class="form-group">
-
-            <div class="col-lg-10">
-                <label for="textArea" class="col-lg-9 control-label">Nivel</label>
-                @Html.EditorFor(model => model.ElNivel, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ElNivel, "", new { @class = "text-danger" })
-
-            </div>
-            <hr />
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Crear" class="TurquesaButton" />
-                </div>
-            </div>
-
-            <div class="col-lg-10">
-                @Html.ActionLink("Volver al inicio", "Index")
-            </div>
+    
+<div class="form-horizontal">
+    <h2>Crear un nuevo Nivel de Pregunta</h2>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        
+        <div class="col-md-10">
+            <h5 class="text-justify">Nivel de Pregunta</h5>
+            @Html.EditorFor(model => model.ElNivel, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ElNivel, "", new { @class = "text-danger" })
         </div>
-
-
     </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+
+            <input type="button" class="AzulButton " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Nivel")'" />
+            <input type="submit" value="Crear" class="AzulButton" />
+        </div>
+    </div>
+    <div>
+       
+    </div>
+</div>
 }
 
 

@@ -62,14 +62,14 @@ namespace Safari.Services.Http
                 }
             }
             [HttpPost]
-            [Route("Eliminar")]
-            public void Eliminar(int id)
+            [Route("Delete")]
+            public void Eliminar(TipoPreguntaRequest agregarRequest)
             {
                 try
                 {
 
                     var bc = new TipoPreguntaComponent();
-                    bc.Delete(id);
+                    bc.Delete(agregarRequest.Objeto.Id);
 
 
                 }
@@ -86,6 +86,7 @@ namespace Safari.Services.Http
                 }
             }
 
+        
             [HttpGet]
             [Route("ListarTodos")]
             public TipoPreguntaResponse ListarTodos()
@@ -132,6 +133,11 @@ namespace Safari.Services.Http
                     };
                     throw new HttpResponseException(httpError);
                 }
+            }
+
+            public TipoPreguntaResponse ObtenerUno(TipoPreguntaRequest agregarRequest)
+            {
+                throw new NotImplementedException();
             }
         }
     }

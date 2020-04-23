@@ -21,7 +21,7 @@ namespace Safari.UI.Web.Controllers
             return View(lista);
 
         }
-        [Route("Nivel/detalles", Name = "NivelControllerRouteDetalle")]
+       
         // GET: Nivel/Details/5
         public ActionResult Details(int id)
         {
@@ -62,7 +62,9 @@ namespace Safari.UI.Web.Controllers
         // GET: Nivel/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            NivelProcess nivel = new NivelProcess();
+            var lista = nivel.ObtenerUno(id);
+            return View(lista);
         }
 
         // POST: Nivel/Edit/5
@@ -88,7 +90,9 @@ namespace Safari.UI.Web.Controllers
         // GET: Nivel/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            NivelProcess nivel = new NivelProcess();
+            var lista = nivel.ObtenerUno(id);
+            return View(lista);
         }
 
         // POST: Nivel/Delete/5
@@ -102,9 +106,10 @@ namespace Safari.UI.Web.Controllers
                 nivel.Eliminar(id);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+
+                return View(ex.Message);
             }
         }
     }

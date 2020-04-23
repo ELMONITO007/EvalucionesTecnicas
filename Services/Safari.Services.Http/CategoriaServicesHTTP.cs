@@ -60,13 +60,13 @@ namespace Safari.Services.Http
         }
         [HttpPost]
         [Route("Eliminar")]
-        public void Eliminar(int id)
+        public void Eliminar(CategoriaRequest agregarRequest)
         {
             try
             {
 
                 var bc = new CategoriaComponent();
-                bc.Delete(id);
+                bc.Delete(agregarRequest.Objeto.Id);
 
 
             }
