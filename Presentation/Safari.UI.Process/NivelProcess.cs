@@ -8,6 +8,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace Safari.UI.Process
 {
     public class NivelProcess : ProcessComponent, IProcess<Nivel, NivelRequest>
@@ -23,9 +24,9 @@ namespace Safari.UI.Process
             var response = HttpPost("api/Nivel/Agregar", request, MediaType.Json);
         }
 
-        public void Eliminar(int id)
+        public void Eliminar(NivelRequest request)
         {
-            var response = HttpPost("api/Nivel/Eliminar", id, MediaType.Json);
+            var response = HttpPost("api/Nivel/Eliminar", request, MediaType.Json);
         }
 
         public Nivel ObtenerUno(int id)

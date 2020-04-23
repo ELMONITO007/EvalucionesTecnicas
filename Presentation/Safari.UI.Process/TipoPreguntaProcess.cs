@@ -29,10 +29,7 @@ namespace Safari.UI.Process
             var response = HttpPost("api/TipoPregunta/Delete", request, MediaType.Json);
         }
 
-        public void Eliminar(int id)
-        {
-            throw new NotImplementedException();
-        }
+   
 
         public TipoPregunta ObtenerUno(int id)
         {

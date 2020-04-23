@@ -59,9 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriaProcess.cs" />
     <Compile Include="IProcess.cs" />
     <Compile Include="MediaType.cs" />
+    <Compile Include="MultipleChoiceProcess.cs" />
     <Compile Include="NivelProcess.cs" />
+    <Compile Include="OrdenProcess.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="ProcessComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,6 +15,6 @@ namespace Safari.UI.Process
 
         void Actualizar(T2 request);
 
-        void Eliminar(int id);
+        void Eliminar(T2 request);
     }
 }
