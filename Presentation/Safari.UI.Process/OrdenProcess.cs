@@ -42,5 +42,14 @@ namespace Safari.UI.Process
             var response = HttpGet<OrdenResponse>("api/Orden/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
             return response.ObtenerTodo;
         }
+        public IList<Orden> listaRespuestaOrdenAlAzar(int id)
+        {
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("id", id);
+            var response = HttpGet<OrdenResponse>("api/listaRespuestaOrdenAlAzar/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
+            return response.ObtenerTodo;
+        }
+
+
     }
 }

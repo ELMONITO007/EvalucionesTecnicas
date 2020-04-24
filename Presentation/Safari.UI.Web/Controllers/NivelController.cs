@@ -103,7 +103,9 @@ namespace Safari.UI.Web.Controllers
             {
                 // TODO: Add delete logic here
                 NivelProcess nivel = new NivelProcess();
-                nivel.Eliminar(id);
+                NivelRequest nivelRequest = new NivelRequest();
+                nivelRequest.Objeto.Id = id;
+                nivel.Eliminar(nivelRequest);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
