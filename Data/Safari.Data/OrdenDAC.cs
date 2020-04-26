@@ -20,6 +20,7 @@ namespace Safari.Data
             orden.NumeroOrden = GetDataValue<int>(dr, "Orden");
             orden.LaRespuesta = GetDataValue<string>(dr, "Respuesta");
             orden.pregunta.Id = GetDataValue<int>(dr, "ID_Pregunta");
+            orden.pregunta.LaPregunta = GetDataValue<string>(dr, "Pregunta");
             return orden;
         }
 
@@ -55,7 +56,7 @@ namespace Safari.Data
 
         public List<Orden> Read()
         {
-            const string SQL_STATEMENT = "Select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and orden is not Null";
+            const string SQL_STATEMENT = "Select ID_Respuesta, Pregunta,r.Respuesta,r.Orden,r.ID_Pregunta from Respuesta as r join Pregunta  as p  on r.ID_Pregunta=p.ID_Pregunta where r.Activo=1 and p.Activo=1 and orden is not Null order by ID_Pregunta ";
 
             List<Orden> result = new List<Orden>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -75,7 +76,7 @@ namespace Safari.Data
 
         public Orden ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select ID_Respuesta,Respuesta,Orden,ID_Pregunta from Respuesta where Activo=1 and ID_Respuesta=@id and orden is not Null";
+            const string SQL_STATEMENT = "Select ID_Respuesta, Pregunta,r.Respuesta,r.Orden,r.ID_Pregunta from Respuesta as r join Pregunta  as p  on r.ID_Pregunta=p.ID_Pregunta where r.Activo=1 and p.Activo=1 and ID_Respuesta=@id and orden is not Null";
             Orden   orden = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

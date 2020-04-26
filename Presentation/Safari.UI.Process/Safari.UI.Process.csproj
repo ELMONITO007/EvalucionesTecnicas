@@ -65,6 +65,7 @@
     <Compile Include="MultipleChoiceProcess.cs" />
     <Compile Include="NivelProcess.cs" />
     <Compile Include="OrdenProcess.cs" />
+    <Compile Include="PreguntaProcess.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="ProcessComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

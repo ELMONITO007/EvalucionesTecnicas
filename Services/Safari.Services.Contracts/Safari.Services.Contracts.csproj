@@ -48,6 +48,7 @@
     <Compile Include="MultipleChoiceResponse.cs" />
     <Compile Include="NivelResponse.cs" />
     <Compile Include="OrdenResponse.cs" />
+    <Compile Include="PreguntaReponse.cs" />
     <Compile Include="PreguntaResponse.cs" />
     <Compile Include="Request\CategoriaRequest.cs" />
     <Compile Include="Contracts.cs" />

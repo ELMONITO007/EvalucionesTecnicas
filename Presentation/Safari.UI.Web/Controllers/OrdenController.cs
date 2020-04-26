@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Safari.UI.Process;
 using System.Net.Http.Headers;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Safari.UI.Web.Controllers
 {
@@ -17,6 +19,13 @@ namespace Safari.UI.Web.Controllers
         {
             OrdenProcess ordenProcess = new OrdenProcess();
             var lista = ordenProcess.ToList();
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+            var Preguntas = preguntaProcess.ToList().Select(x =>
+                                   new {
+                                       Id = x.Id,
+                                       Pregunta = x.LaPregunta
+                                   });
+            ViewBag.Pregunta = new SelectList(Preguntas, "Id", "Pregunta");
             return View(lista);
         }
 
@@ -31,8 +40,14 @@ namespace Safari.UI.Web.Controllers
         // GET: Orden/Create
         public ActionResult Create()
         {
-           
-            
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+            var Preguntas=preguntaProcess.ToList().Select(x =>
+                                 new {
+                                     Id = x.Id,
+                                     Pregunta = x.LaPregunta 
+                                 });
+            ViewBag.Pregunta = new SelectList(Preguntas, "Id", "Pregunta");
+
             return View();
         }
 
@@ -46,7 +61,7 @@ namespace Safari.UI.Web.Controllers
                 RequestOrden request = new RequestOrden();
                 request.Objeto.LaRespuesta= collection.Get("TipoDePregunta");
                 request.Objeto.NumeroOrden=int.Parse(collection.Get("NumeroOrden"));
-                request.Objeto.pregunta.Id= int.Parse(collection.Get("ID_Pregunta"));
+                request.Objeto.pregunta.Id= int.Parse(collection.Get("Id"));
                 ordenProcess.Agregar(request);
                 // TODO: Add insert logic here
 
@@ -62,7 +77,13 @@ namespace Safari.UI.Web.Controllers
         public ActionResult Edit(int id)
         {
             OrdenProcess ordenProcess = new OrdenProcess();
-
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+            var Preguntas = preguntaProcess.ToList().Select(x =>
+                                   new {
+                                       Id = x.Id,
+                                       Pregunta = x.LaPregunta
+                                   });
+            ViewBag.Pregunta = new SelectList(Preguntas, "Id", "Pregunta");
             return View(ordenProcess.ObtenerUno(id));
         }
 
@@ -77,7 +98,8 @@ namespace Safari.UI.Web.Controllers
                 request.Objeto.Id = int.Parse(collection.Get("Id"));
                 request.Objeto.LaRespuesta = collection.Get("TipoDePregunta");
                 request.Objeto.NumeroOrden = int.Parse(collection.Get("NumeroOrden"));
-                request.Objeto.pregunta.Id = int.Parse(collection.Get("ID_Pregunta"));
+                request.Objeto.pregunta.Id = int.Parse(collection.Get("Id"));
+
                 ordenProcess.Actualizar(request);
 
                 // TODO: Add update logic here
@@ -94,7 +116,13 @@ namespace Safari.UI.Web.Controllers
         public ActionResult Delete(int id)
         {
             OrdenProcess ordenProcess = new OrdenProcess();
-
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+            var Preguntas = preguntaProcess.ToList().Select(x =>
+                                   new {
+                                       Id = x.Id,
+                                       Pregunta = x.LaPregunta
+                                   });
+            ViewBag.Pregunta = new SelectList(Preguntas, "Id", "Pregunta");
             return View(ordenProcess.ObtenerUno(id));
         }
 

@@ -2094,12 +2094,12 @@
     <Content Include="Views\TipoPregunta\Create.cshtml" />
     <Content Include="Views\TipoPregunta\Edit.cshtml" />
     <Content Include="Views\TipoPregunta\Delete.cshtml" />
+    <Content Include="Views\Orden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Views\Orden\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
