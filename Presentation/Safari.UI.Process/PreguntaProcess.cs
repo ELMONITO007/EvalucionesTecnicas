@@ -31,14 +31,14 @@ namespace Safari.UI.Process
         public Pregunta ObtenerUno(int id)
         {    var parameters = new Dictionary<string, object>();
             parameters.Add("id", id);
-            var response = HttpGet<PreguntaReponse>("api/Categoria/ObtenerUno", parameters, MediaType.Json);
+            var response = HttpGet<PreguntaReponse>("api/Pregunta/ObtenerUno", parameters, MediaType.Json);
             return response.obtenerUno;
            
         }
 
         public IList<Pregunta> ToList()
         {
-            var response = HttpGet<PreguntaReponse>("api/Categoria/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
+            var response = HttpGet<PreguntaReponse>("api/Pregunta/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
             return response.ObtenerTodo;
         }
     }

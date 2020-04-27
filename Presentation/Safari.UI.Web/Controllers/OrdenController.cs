@@ -19,13 +19,7 @@ namespace Safari.UI.Web.Controllers
         {
             OrdenProcess ordenProcess = new OrdenProcess();
             var lista = ordenProcess.ToList();
-            PreguntaProcess preguntaProcess = new PreguntaProcess();
-            var Preguntas = preguntaProcess.ToList().Select(x =>
-                                   new {
-                                       Id = x.Id,
-                                       Pregunta = x.LaPregunta
-                                   });
-            ViewBag.Pregunta = new SelectList(Preguntas, "Id", "Pregunta");
+           
             return View(lista);
         }
 
@@ -41,12 +35,27 @@ namespace Safari.UI.Web.Controllers
         public ActionResult Create()
         {
             PreguntaProcess preguntaProcess = new PreguntaProcess();
-            var Preguntas=preguntaProcess.ToList().Select(x =>
-                                 new {
+            var Preguntas = preguntaProcess.ToList().Select(x =>
+                                 new
+                                 {
                                      Id = x.Id,
-                                     Pregunta = x.LaPregunta 
+                                     LaPregunta = x.LaPregunta
+
                                  });
-            ViewBag.Pregunta = new SelectList(Preguntas, "Id", "Pregunta");
+
+            CategoriaProcess categoriaProcess = new CategoriaProcess();
+            var categoria=categoriaProcess.ToList().Select(x =>
+                                 new
+                                 {
+                                     Id = x.Id,
+                                     LaCategoria = x.LaCategoria
+
+                                 });
+
+            ViewBag.preguntaLista = new SelectList(Preguntas, "Id", "LaPregunta");
+            ViewBag.categoriaLista = new SelectList(categoria, "Id", "LaCategoria");
+
+
 
             return View();
         }
@@ -59,9 +68,9 @@ namespace Safari.UI.Web.Controllers
             {
                 OrdenProcess ordenProcess = new OrdenProcess();
                 RequestOrden request = new RequestOrden();
-                request.Objeto.LaRespuesta= collection.Get("TipoDePregunta");
+                request.Objeto.LaRespuesta= collection.Get("LaRespuesta");
                 request.Objeto.NumeroOrden=int.Parse(collection.Get("NumeroOrden"));
-                request.Objeto.pregunta.Id= int.Parse(collection.Get("Id"));
+                request.Objeto.pregunta.Id= int.Parse(collection.Get("pregunta.Id"));
                 ordenProcess.Agregar(request);
                 // TODO: Add insert logic here
 

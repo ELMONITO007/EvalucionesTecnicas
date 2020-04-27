@@ -2095,6 +2095,7 @@
     <Content Include="Views\TipoPregunta\Edit.cshtml" />
     <Content Include="Views\TipoPregunta\Delete.cshtml" />
     <Content Include="Views\Orden\Index.cshtml" />
+    <Content Include="Views\Orden\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
