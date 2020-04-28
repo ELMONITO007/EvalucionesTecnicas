@@ -112,5 +112,13 @@ namespace Safari.Business
             }
             return result;
         }
+        public List<Pregunta> LeerPorTipoDePregunta(TipoPregunta tipoPregunta)
+        {
+            List<Pregunta> result = new List<Pregunta>();
+            PreguntaDAC preguntaDAC = new PreguntaDAC();
+            result = preguntaDAC.LeerPorTipoDePregunta(tipoPregunta.Id);
+
+            return result;
+        }
     }
 }

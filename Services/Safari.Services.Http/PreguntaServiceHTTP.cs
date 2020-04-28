@@ -184,5 +184,35 @@ namespace Safari.Services.Http
                 throw new HttpResponseException(httpError);
             }
         }
+        [HttpGet]
+        [Route("LeerPorTipoDePregunta")]
+        public PreguntaResponse LeerPorTipoDePregunta(int id)
+        {
+
+            try
+            {
+                var response = new PreguntaResponse();
+
+                TipoPreguntaRequest tipoPreguntaRequest = new TipoPreguntaRequest();
+                tipoPreguntaRequest.Objeto.Id = id;
+                var bc = new PreguntaComponent();
+                response.ObtenerTodo = bc.LeerPorTipoDePregunta(tipoPreguntaRequest.Objeto);
+
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+                throw new HttpResponseException(httpError);
+            }
+        }
+
+
     }
 }

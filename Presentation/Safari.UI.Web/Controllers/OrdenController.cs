@@ -35,7 +35,8 @@ namespace Safari.UI.Web.Controllers
         public ActionResult Create()
         {
             PreguntaProcess preguntaProcess = new PreguntaProcess();
-            var Preguntas = preguntaProcess.ToList().Select(x =>
+
+            var Preguntas = preguntaProcess.LeerPorTipoDePregunta(2).Select(x =>
                                  new
                                  {
                                      Id = x.Id,

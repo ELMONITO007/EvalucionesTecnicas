@@ -139,6 +139,27 @@ namespace Safari.Data
             return result;
 
         }
+        public List<Pregunta> LeerPorTipoDePregunta(int id)
+        {
+            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1 and ID_TipoPregunta=@ID_TipoPregunta";
+
+            List<Pregunta> result = new List<Pregunta>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@ID_TipoPregunta", DbType.Int32, id);
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    
+                    while (dr.Read())
+                    {
+                        Pregunta pregunta = LoadPregunta(dr);
+                        result.Add(pregunta);
+                    }
+                }
+            }
+            return result;
+        }
 
     }
 }

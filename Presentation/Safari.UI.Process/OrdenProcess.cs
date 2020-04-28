@@ -46,7 +46,7 @@ namespace Safari.UI.Process
         {
             var parameters = new Dictionary<string, object>();
             parameters.Add("id", id);
-            var response = HttpGet<OrdenResponse>("api/listaRespuestaOrdenAlAzar/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
+            var response = HttpGet<OrdenResponse>("api/Orden/listaRespuestaOrdenAlAzar", parameters, MediaType.Json);
             return response.ObtenerTodo;
         }
 
