@@ -7,6 +7,8 @@ using Safari.UI.Process;
 using System.Net.Http.Headers;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using Safari.UI.Web.Models;
+using Safari.Entities;
 
 namespace Safari.UI.Web.Controllers
 {
@@ -15,12 +17,50 @@ namespace Safari.UI.Web.Controllers
     {
         [Route("Orden", Name = "OrdenControllerRouteIndex")]
         // GET: Orden
-        public ActionResult Index()
+        public ActionResult Index(String pregunta)
         {
+            //Obtengo las Preguntas
+
+
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+
+
+            var Preguntas = preguntaProcess.LeerPorTipoDePregunta(2).Select(x =>
+                                 new
+                                 {
+                                     Id = x.Id,
+                                     LaPregunta = x.LaPregunta
+
+                                 }); 
+            ViewBag.preguntaLista = new SelectList(Preguntas, "LaPregunta", "LaPregunta");
+
+        //Obtengo Respuesta con o sin Filtro
             OrdenProcess ordenProcess = new OrdenProcess();
             var lista = ordenProcess.ToList();
+
+            
+            if (!String.IsNullOrEmpty(pregunta))
+            {
+                List<Orden> listaFiltrado = new List<Orden>();
+                foreach (Orden item in lista)
+                {
+                    if (item.pregunta.LaPregunta==pregunta)
+                    {
+                        listaFiltrado.Add(item);
+
+                    }
+                   
+                }
+                return View(listaFiltrado.ToList());
+            }
+            else
+            {
+                return View(lista);
+            }
+          
+         
            
-            return View(lista);
+           
         }
 
         // GET: Orden/Details/5
@@ -34,6 +74,8 @@ namespace Safari.UI.Web.Controllers
         // GET: Orden/Create
         public ActionResult Create()
         {
+
+
             PreguntaProcess preguntaProcess = new PreguntaProcess();
 
             var Preguntas = preguntaProcess.LeerPorTipoDePregunta(2).Select(x =>
@@ -153,5 +195,6 @@ namespace Safari.UI.Web.Controllers
                 return View();
             }
         }
+    
     }
 }

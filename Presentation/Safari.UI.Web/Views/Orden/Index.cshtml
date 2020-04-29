@@ -11,8 +11,21 @@
     <div>
         <form>
             <p>
-                Pelicula: <input type="text" asp-for="SearchString" />
-                <input type="submit" value="Filtrar" class="AzulButton" />
+                @using (Html.BeginForm())
+                {
+                   
+                        <div class="form-group">
+                           
+                            <div class="col-md-10">
+                                @Html.DropDownList("Pregunta", (SelectList)ViewBag.preguntaLista, new { @class = "form-control" })
+
+
+                                <input type="submit" value="Buscar" class="AzulButton" />
+                                <input type="button" class="AzulButton " style="float:right" value="Ver todo" onclick="location.href='@Url.Action("Index", "Orden")'" />
+                            </div>
+                        </div>
+                    
+                    }
             </p>
         </form>
     </div>
