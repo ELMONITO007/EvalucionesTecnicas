@@ -17,27 +17,76 @@ namespace Safari.UI.Web.Controllers
     {
         [Route("Orden", Name = "OrdenControllerRouteIndex")]
         // GET: Orden
-        public ActionResult Index(String pregunta)
+        public ActionResult Index(String pregunta,string categoria)
         {
+            #region Categorias
+
+           
+            CategoriaProcess categoriaProcess = new CategoriaProcess();
+            var listaCategoria = categoriaProcess.ToList();
+            listaCategoria.Select(y =>
+                                new
+                                {
+                                    Id = y.Id,
+                                    LaCategoria=y.LaCategoria
+                                }) ;
+            ViewBag.categoriaLista = new SelectList(listaCategoria, "LaCategoria", "LaCategoria");
+
+            #endregion
+
+
+            #region Preguntas
             //Obtengo las Preguntas
 
 
             PreguntaProcess preguntaProcess = new PreguntaProcess();
 
+            var listaPreguntaParaFiltrar = preguntaProcess.LeerPorTipoDePregunta(2);
+            if (!String.IsNullOrEmpty(categoria))
+            {
+                List<Pregunta> FiltroPregunta = new List<Pregunta>();
+                foreach (var item3 in listaPreguntaParaFiltrar)
+                {
+                  
+                    if (item3.categoria.LaCategoria==categoria)
+                    {
+                        FiltroPregunta.Add(item3);
+                    }
 
-            var Preguntas = preguntaProcess.LeerPorTipoDePregunta(2).Select(x =>
+                }
+
+                FiltroPregunta.Select(x =>
                                  new
                                  {
                                      Id = x.Id,
                                      LaPregunta = x.LaPregunta
 
-                                 }); 
-            ViewBag.preguntaLista = new SelectList(Preguntas, "LaPregunta", "LaPregunta");
+                                 });
+                ViewBag.preguntaLista = new SelectList(FiltroPregunta, "LaPregunta", "LaPregunta");
+            }
+            else
+            {
+                var preguntas = preguntaProcess.LeerPorTipoDePregunta(2).Select(x =>
+                                 new
+                                 {
+                                     Id = x.Id,
+                                     LaPregunta = x.LaPregunta
 
-        //Obtengo Respuesta con o sin Filtro
+                                 });
+                ViewBag.preguntaLista = new SelectList(preguntas, "LaPregunta", "LaPregunta");
+            }
+            
+           
+            #endregion
+
+
+
+            #region Preguntas por Orden y filtro
+            //Obtengo Respuesta con o sin Filtro
             OrdenProcess ordenProcess = new OrdenProcess();
+           
             var lista = ordenProcess.ToList();
-
+            
             
             if (!String.IsNullOrEmpty(pregunta))
             {
@@ -57,10 +106,11 @@ namespace Safari.UI.Web.Controllers
             {
                 return View(lista);
             }
-          
-         
-           
-           
+
+            #endregion
+
+
+
         }
 
         // GET: Orden/Details/5

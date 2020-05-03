@@ -220,6 +220,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NivelController.cs" />
     <Compile Include="Controllers\OrdenController.cs" />
+    <Compile Include="Controllers\PreguntaController.cs" />
     <Compile Include="Controllers\TipoPreguntaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,6 +239,8 @@
     <Content Include="Areas\Admin\Content\js\demo\chart-bar-demo.js" />
     <Content Include="Areas\Admin\Content\js\demo\chart-pie-demo.js" />
     <Content Include="Areas\Admin\Content\js\demo\datatables-demo.js" />
+    <Content Include="Areas\Admin\Content\js\fileinput.js" />
+    <Content Include="Areas\Admin\Content\js\fileinput.min.js" />
     <Content Include="Areas\Admin\Content\js\sb-admin-2.js" />
     <Content Include="Areas\Admin\Content\js\sb-admin-2.min.js" />
     <Content Include="Areas\Admin\Content\vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -2102,11 +2105,16 @@
     <Content Include="Views\Categoria\Create.cshtml" />
     <Content Include="Views\Categoria\Edit.cshtml" />
     <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Pregunta\Index.cshtml" />
+    <Content Include="Views\Pregunta\Create.cshtml" />
+    <Content Include="Views\Pregunta\Details.cshtml" />
+    <Content Include="Views\Pregunta\TestAdjunto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="ImagenesPregunta\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

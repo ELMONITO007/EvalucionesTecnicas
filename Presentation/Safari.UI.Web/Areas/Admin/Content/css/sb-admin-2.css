@@ -112,9 +112,10 @@ body {
     cursor: pointer;
     color: #ffffff;
     font-family: Arial;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: bold;
-    padding: 12px 44px;
+    padding: 10px 30px;
+    margin-left:10px;
     text-decoration: none;
     text-shadow: -1px 1px 0px #528ecc;
 }
@@ -125,6 +126,34 @@ body {
     }
 
     .AzulButton:active {
+        position: relative;
+        top: 1px;
+    }
+
+    /*Boton buscar */
+.SearchButton {
+    box-shadow: inset 0px 1px 0px 0px #9fb4f2;
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    background-color: #7892c2;
+    border-radius: 12px;
+    border: 1px solid #4e6096;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 17px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #283966;
+}
+
+    .SearchButton:hover {
+        background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+        background-color: #476e9e;
+    }
+
+    .SearchButton:active {
         position: relative;
         top: 1px;
     }
@@ -286,6 +315,7 @@ svg {
 
 table {
   border-collapse: collapse;
+  max-width:300px;
 }
 
 caption {
@@ -1443,6 +1473,7 @@ pre code {
   width: 100%;
   margin-bottom: 1rem;
   color: #858796;
+  max-width:300px;
 }
 
 .table th,
@@ -1722,6 +1753,9 @@ pre code {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.075);
 }
+.MaxSizeColumn{
+    max-width:500px;
+}
 
 @media (max-width: 575.98px) {
   .table-responsive-sm {
@@ -1775,9 +1809,10 @@ pre code {
   display: block;
   width: 100%;
   overflow-x: auto;
+  max-width: 300px;
   -webkit-overflow-scrolling: touch;
+  
 }
-
 .table-responsive > .table-bordered {
   border: 0;
 }
@@ -11070,3 +11105,98 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+/*Area de manejo de archivos*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 999px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        background: red;
+        cursor: inherit;
+        display: block;
+    }
+
+.file-caption-disabled {
+    background-color: #EEEEEE;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.file-input .btn[disabled], .file-input .btn .disabled {
+    cursor: not-allowed;
+}
+
+.file-preview {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.file-preview-frame {
+    display: table;
+    margin: 8px;
+    height: 160px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 5px 0px #a2958a;
+    padding: 6px;
+    float: left;
+    text-align: center;
+}
+
+    .file-preview-frame:hover {
+        background-color: #eee;
+        box-shadow: 2px 2px 5px 0px #333;
+    }
+
+.file-preview-image {
+    height: 150px;
+    vertical-align: text-center;
+}
+
+.file-preview-text {
+    display: table-cell;
+    width: 150px;
+    height: 150px;
+    color: #428bca;
+    font-size: 11px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.file-preview-other {
+    display: table-cell;
+    width: 150px;
+    height: 150px;
+    font-family: Monaco, Consolas, monospace;
+    font-size: 11px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.file-input-new .file-preview, .file-input-new .close, .file-input-new .glyphicon-file, .file-input-new .fileinput-remove-button, .file-input-new .fileinput-upload-button {
+    display: none;
+}
+
+.loading {
+    background: transparent url('../img/loading.gif') no-repeat scroll center center content-box !important;
+}
+
+.wrap-indicator {
+    font-weight: bold;
+    color: #245269;
+    cursor: pointer;
+}
+/*Fin del area*/

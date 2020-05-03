@@ -1,0 +1,29 @@
+﻿@model Safari.Entities.Pregunta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="col-md-10">
+            <h5>Ubicacion Imagen</h5>
+        </div>
+        <div class="col-md-10">
+
+
+            <input type="file" name="file" accept="image/*" />
+            <button type="submit" , class="AzulButton">Adjuntar</button>
+
+
+        </div>
+    </form>
+
+</div>
+
+
+
+

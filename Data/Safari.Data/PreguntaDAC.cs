@@ -18,8 +18,11 @@ namespace Safari.Data
             pregunta.LaPregunta = GetDataValue<string>(dr, "Pregunta");
             pregunta.Imagen = GetDataValue<string>(dr, "Imagen");
             pregunta.nivel.Id = GetDataValue<int>(dr, "ID_Nivel");
+            pregunta.nivel.ElNivel = GetDataValue<string>(dr, "Nivel");
             pregunta.categoria.Id= GetDataValue<int>(dr, "ID_Categoria");
+            pregunta.categoria.LaCategoria = GetDataValue<string>(dr, "categoria");
             pregunta.tipoPregunta.Id = GetDataValue<int>(dr, "ID_TipoPregunta");
+            pregunta.tipoPregunta.TipoDePregunta = GetDataValue<string>(dr, "TipoPregunta");
             return pregunta;
         }
 
@@ -33,8 +36,9 @@ namespace Safari.Data
                 db.AddInParameter(cmd, "@Imagen", DbType.String, entity.Imagen);
                 db.AddInParameter(cmd, "@ID_Nivel", DbType.Int32, entity.nivel.Id);
                 db.AddInParameter(cmd, "@ID_Categoria", DbType.Int32, entity.categoria.Id);
-                
+                db.AddInParameter(cmd, "@TipoPregunta", DbType.String, entity.tipoPregunta.TipoDePregunta);
                 db.AddInParameter(cmd, "@ID_TipoPregunta", DbType.String, entity.tipoPregunta.Id);
+               
                 entity.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
 
@@ -57,7 +61,7 @@ namespace Safari.Data
 
         public List<Pregunta> Read()
         {
-            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1";
+            const string SQL_STATEMENT = "select Nivel, tp.TipoPregunta, categoria, p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria inner join TipoPregunta as tp on tp.ID_TipoPregunta =p.ID_TipoPregunta inner join NivelPregunta as np on np.ID_Nivel = p.ID_Nivel where p.activo=1";
 
             List<Pregunta> result = new List<Pregunta>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -77,7 +81,7 @@ namespace Safari.Data
 
         public Pregunta ReadBy(int id)
         {
-            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1 and p.ID_Pregunta=@id";
+            const string SQL_STATEMENT = "select Nivel, tp.TipoPregunta, categoria, p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria inner join TipoPregunta as tp on tp.ID_TipoPregunta =p.ID_TipoPregunta inner join NivelPregunta as np on np.ID_Nivel = p.ID_Nivel  where p.activo=1 and p.ID_Pregunta=@id";
             Pregunta pregunta = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -116,7 +120,7 @@ namespace Safari.Data
         public List<Pregunta> ObtenerPreguntarAlAzarPorNivelYCategoria(Pregunta pregunta, int cantidad)
         {
            
-             string SQL_STATEMENT = "select top " + cantidad + " p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,pc.ID_Categoria from Pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta where ID_Nivel=@Id_Nivel and p.Activo=1 and pc.ID_Categoria=@ID_categoria order by NEWID() ";
+             string SQL_STATEMENT = "select top " + cantidad + " categoria,p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,pc.ID_Categoria from Pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta where ID_Nivel=@Id_Nivel and p.Activo=1 and pc.ID_Categoria=@ID_categoria order by NEWID() ";
 
             List<Pregunta> result = new List<Pregunta>();
            
@@ -141,7 +145,7 @@ namespace Safari.Data
         }
         public List<Pregunta> LeerPorTipoDePregunta(int id)
         {
-            const string SQL_STATEMENT = "select p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1 and ID_TipoPregunta=@ID_TipoPregunta";
+            const string SQL_STATEMENT = "select categoria, p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1 and ID_TipoPregunta=@ID_TipoPregunta";
 
             List<Pregunta> result = new List<Pregunta>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
