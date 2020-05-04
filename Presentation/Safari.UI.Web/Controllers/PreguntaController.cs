@@ -43,7 +43,7 @@ namespace Safari.UI.Web.Controllers
                 List<Pregunta> listaPreguntasFiltrada = new List<Pregunta>();
                 foreach (var item in listaPreguntas)
                 {
-                    if (item.categoria.LaCategoria==categoria)
+                    if (item.categoria.LaCategoria == categoria)
                     {
                         listaPreguntasFiltrada.Add(item);
                     }
@@ -55,20 +55,22 @@ namespace Safari.UI.Web.Controllers
                 return View(listaPreguntas);
             }
             #endregion
-            
+
         }
 
         // GET: Pregunta/Details/5
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-           
-            return View();
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+
+
+            return View(preguntaProcess.ObtenerUno(id));
         }
         [HttpPost]
         public ActionResult Details(HttpPostedFileBase file)
         {
 
-            if (file!=null)
+            if (file != null)
             {
                 string ruta = Server.MapPath("~/ImagenesPregunta/");
                 ruta += file.FileName;
@@ -120,10 +122,10 @@ namespace Safari.UI.Web.Controllers
         [HttpPost]
         public ActionResult Create(HttpPostedFileBase file, string LaPregunta, string Categoria, string TipoPregunta, string Nivel)
         {
-         
-;            try
+
+            ; try
             {
-                string ruta="";
+                string ruta = "";
                 if (file != null)
                 {
 
@@ -135,13 +137,13 @@ namespace Safari.UI.Web.Controllers
                 PreguntaProcess preguntaProcess = new PreguntaProcess();
                 PreguntaRequest preguntaRequest = new PreguntaRequest();
                 preguntaRequest.Objeto.Imagen = ruta;
-       
+
                 preguntaRequest.Objeto.categoria.Id = int.Parse(Categoria);
                 preguntaRequest.Objeto.LaPregunta = LaPregunta;
                 preguntaRequest.Objeto.tipoPregunta.Id = int.Parse(TipoPregunta);
                 preguntaRequest.Objeto.nivel.Id = int.Parse(Nivel);
                 preguntaProcess.Agregar(preguntaRequest);
-     
+
 
                 return RedirectToAction("Index");
             }
@@ -153,50 +155,6 @@ namespace Safari.UI.Web.Controllers
 
         // GET: Pregunta/Edit/5
         public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Pregunta/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Pregunta/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Pregunta/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-       
-        public ActionResult TestAdjunto()
         {
             #region Categoria
             CategoriaProcess categoriaProcess = new CategoriaProcess();
@@ -232,17 +190,55 @@ namespace Safari.UI.Web.Controllers
                                 });
             ViewBag.categoriaTipoPregunta = new SelectList(listaTipoPregunta, "Id", "TipoDePregunta");
             #endregion
-
-            return View();
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+            return View(preguntaProcess.ObtenerUno(id));
         }
 
+        // POST: Pregunta/Edit/5
         [HttpPost]
-        public ActionResult TestAdjunto(HttpPostedFileBase file, string LaPregunta)
+        public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Categoria, string TipoPregunta, string Nivel)
         {
-            string archivo = file.FileName;
-         string   ruta = Server.MapPath(".");
+            try
+            {
 
-            return RedirectToAction("Index");
+                PreguntaProcess preguntaProcess = new PreguntaProcess();
+                PreguntaRequest preguntaRequest = new PreguntaRequest();
+
+                preguntaProcess.Actualizar(preguntaRequest);
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Pregunta/Delete/5
+        public ActionResult Delete(int id)
+        {
+            PreguntaProcess preguntaProcess = new PreguntaProcess();
+            return View(preguntaProcess.ObtenerUno(id));
+        }
+
+        // POST: Pregunta/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                PreguntaProcess preguntaProcess = new PreguntaProcess();
+                PreguntaRequest preguntaRequest = new PreguntaRequest();
+                preguntaRequest.Objeto.Id = id;
+                preguntaProcess.Eliminar(preguntaRequest);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
 

@@ -4,26 +4,57 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 <link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
-<div class="form-horizontal">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <form method="post" enctype="multipart/form-data">
-        <div class="col-md-10">
-            <h5>Ubicacion Imagen</h5>
-        </div>
-        <div class="col-md-10">
+<div>
+    <h4>Detalles de la Pregunta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Pregunta
+        </dt>
+
+        <dd style="max-width:600px">
+            @Html.DisplayFor(model => model.LaPregunta)
+        </dd>
+
+        <dt>
+            Ubicacion Imagen
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+        <dt>
+            Sector
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoria.LaCategoria)
+        </dd>
+        <dt>
+            Nivel
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nivel.ElNivel)
+        </dd>
+        <dt>
+            Tipo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoPregunta.TipoDePregunta)
+        </dd>
 
 
-            <input type="file" name="file" accept="image/*" />
-            <button type="submit" , class="AzulButton">Adjuntar</button>
+    </dl>
+    <div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
 
-
-        </div>
-    </form>
-
+        </p>
+    </div>
+    <input type="button" class="AzulButton " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "Pregunta")'" />
 </div>
-
-
-
-
