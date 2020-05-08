@@ -78,7 +78,7 @@ namespace Safari.Data
 
         public Orden ReadBy(int id)
         {
-            const string SQL_STATEMENT = "Select ID_Respuesta, Pregunta,r.Respuesta,r.Orden,r.ID_Pregunta from Respuesta as r join Pregunta  as p  on r.ID_Pregunta=p.ID_Pregunta where r.Activo=1 and p.Activo=1 and ID_Respuesta=@id and orden is not Null";
+            const string SQL_STATEMENT = "Select ca.Categoria, pc.ID_Categoria, ID_Respuesta, Pregunta,r.Respuesta,r.Orden,r.ID_Pregunta from Respuesta as r join Pregunta  as p  on r.ID_Pregunta=p.ID_Pregunta inner join PreguntaCategoria as pc on pc.ID_Pregunta=p.ID_Pregunta inner join Categoria as ca on ca.ID_Categoria=pc.ID_Categoria where r.Activo=1 and p.Activo=1 and ID_Respuesta=@id and orden is not Null";
             Orden   orden = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

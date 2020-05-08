@@ -1,0 +1,36 @@
+﻿@model Safari.Entities.Orden
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+<div class="col-auto">
+    <h3>¿Esta seguro de eliminar la respuesta numero @Html.DisplayFor(model => model.Id)? </h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Respuesta
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LaRespuesta)
+        </dd>
+
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div >
+                <div>
+                    <input type="button" class="AzulButton " style="float:right" value="Volver" onclick="location.href='@Url.Action("Index", "orden")'" />
+                    <input type="submit" value="Eliminar" class="AzulButton" />
+
+
+
+                </div>
+            </div>
+        }
+</div>

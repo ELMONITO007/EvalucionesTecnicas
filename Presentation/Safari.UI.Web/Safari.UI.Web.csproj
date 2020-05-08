@@ -2110,6 +2110,9 @@
     <Content Include="Views\Pregunta\Details.cshtml" />
     <Content Include="Views\Pregunta\Edit.cshtml" />
     <Content Include="Views\Pregunta\Delete.cshtml" />
+    <Content Include="Views\Orden\Details.cshtml" />
+    <Content Include="Views\Orden\Delete.cshtml" />
+    <Content Include="Views\Orden\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

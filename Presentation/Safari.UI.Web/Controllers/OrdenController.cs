@@ -198,7 +198,7 @@ namespace Safari.UI.Web.Controllers
                 OrdenProcess ordenProcess = new OrdenProcess();
                 RequestOrden request = new RequestOrden();
                 request.Objeto.Id = int.Parse(collection.Get("Id"));
-                request.Objeto.LaRespuesta = collection.Get("TipoDePregunta");
+                request.Objeto.LaRespuesta = collection.Get("LaRespuesta");
                 request.Objeto.NumeroOrden = int.Parse(collection.Get("NumeroOrden"));
                 request.Objeto.pregunta.Id = int.Parse(collection.Get("Id"));
 
@@ -218,13 +218,7 @@ namespace Safari.UI.Web.Controllers
         public ActionResult Delete(int id)
         {
             OrdenProcess ordenProcess = new OrdenProcess();
-            PreguntaProcess preguntaProcess = new PreguntaProcess();
-            var Preguntas = preguntaProcess.ToList().Select(x =>
-                                   new {
-                                       Id = x.Id,
-                                       Pregunta = x.LaPregunta
-                                   });
-            ViewBag.Pregunta = new SelectList(Preguntas, "Id", "Pregunta");
+           
             return View(ordenProcess.ObtenerUno(id));
         }
 
