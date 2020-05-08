@@ -9,17 +9,30 @@
 
 
 <div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var height = $(window).height();
+
+            $('#div2').height(height);
+        });
+
+    </script>
     <div>
         @using (Html.BeginForm())
         {
-            <div class="form-group">
-                <div class="col-md-10">
+        <div class="form-group">
+            <div class="col-md-12" style="max-width:350px">
 
-                    <h4>Categoria de la Pregunta</h4>
-                    @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista, new { @class = "form-control" })
+                <h4>Categoria de la Pregunta</h4>
 
+
+
+            </div>
+            <div class="col-md-12" style="max-width:300px">
+                @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista, new { @class = "form-control" })
                 </div>
-
             </div>
             <div class="col-md-10">
                 <input type="submit" value="Buscar" class="AzulButton" />
@@ -27,31 +40,29 @@
             </div>
 
 
-        }
-    </div>
-    <div>
-        <h4>
-        </h4>
-    </div>
+            }
+        </div>
+    <br />
 
     <div>
-        <table class=" table table-responsive table-bordered" >
+        <table class="table-bordered col-md-12 table-striped ">
             <tr>
                 <th>
-                    <h4>Pregunta</h4>
+
+                    <h4 style="text-align:center">Pregunta</h4>
                 </th>
                 <th>
-                    <h4>Categoria</h4>
+                    <h4  style="text-align:center">Categoria</h4>
                 </th>
 
                 <th>
-                    <h4>Imagen</h4>
+                    <h4  style="text-align:center">Imagen</h4>
                 </th>
                 <th>
-                    <h4>Nivel</h4>
+                    <h4  style="text-align:center">Nivel</h4>
                 </th>
                 <th>
-                    <h4>Tipo</h4>
+                    <h4  style="text-align:center">Tipo</h4>
                 </th>
 
                 <th></th>
@@ -60,23 +71,29 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td style="max-width:600px">
+                    <td style="max-width:700px">
+                        <br />
                         @Html.DisplayFor(modelItem => item.LaPregunta)
+                        <br />
                     </td>
                     <td>
+                        <br />
                         @Html.DisplayFor(modelItem => item.categoria.LaCategoria)
+                        <br />
                     </td>
-                    <td>
+                    <td style="max-width:400px">
+                        <br />
                         @Html.DisplayFor(modelItem => item.Imagen)
+                    <br />
                     </td>
-                    <td>
+                    <td style="max-width:200px">
                         @Html.DisplayFor(modelItem => item.nivel.ElNivel)
                     </td>
-                    <td>
+                    <td style="max-width:300px">
                         @Html.DisplayFor(modelItem => item.tipoPregunta.TipoDePregunta)
                     </td>
 
-                    <td>
+                    <td style="max-width:400px">
                         @Html.ActionLink("Editar", "Edit", new { id = item.Id })
                         @Html.ActionLink("Detalles", "Details", new { id = item.Id })
                         @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
@@ -86,10 +103,10 @@
 
         </table>
     </div>
-    <div  class=" col-md-12"  >
-        
-    <p>
-        <input type="button" class="AzulButton " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Pregunta")'" />
-    </p>
+    <div class=" col-md-12">
+
+        <p>
+            <input type="button" class="AzulButton " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Pregunta")'" />
+        </p>
     </div>
 </div>

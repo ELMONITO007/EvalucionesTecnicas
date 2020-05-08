@@ -196,14 +196,33 @@ namespace Safari.UI.Web.Controllers
 
         // POST: Pregunta/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Categoria, string TipoPregunta, string Nivel)
+        public ActionResult Edit(int id, HttpPostedFileBase file, string LaPregunta, string Categoria, string TipoPregunta, string Nivel,string Imagen)
         {
             try
             {
 
                 PreguntaProcess preguntaProcess = new PreguntaProcess();
                 PreguntaRequest preguntaRequest = new PreguntaRequest();
+                preguntaRequest.Objeto.Id = id;
+                preguntaRequest.Objeto.LaPregunta = LaPregunta;
+                preguntaRequest.Objeto.categoria.Id = int.Parse(Categoria);
+                preguntaRequest.Objeto.tipoPregunta.Id = int.Parse(TipoPregunta);
+                preguntaRequest.Objeto.nivel.Id = int.Parse(Nivel);
+                string ruta = "";
+                if (file != null)
+                {
 
+                    ruta = @"C:\Imagenes\";
+                    ruta += file.FileName;
+                    file.SaveAs(ruta);
+                    preguntaRequest.Objeto.Imagen = ruta;
+                }
+                else
+                {
+                    preguntaRequest.Objeto.Imagen = Imagen;
+                }
+
+                
                 preguntaProcess.Actualizar(preguntaRequest);
                 // TODO: Add update logic here
 

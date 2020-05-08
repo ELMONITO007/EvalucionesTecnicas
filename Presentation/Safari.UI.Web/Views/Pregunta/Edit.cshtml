@@ -1,0 +1,89 @@
+﻿@model Safari.Entities.Pregunta
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+En construccion
+
+    @*@Html.AntiForgeryToken()
+
+<div class="form-horizontal col-md-2">
+    <div style="min-width:550px">
+        <h2>Editar la Pregunta numero  @Html.DisplayFor(model => model.Id)</h2>
+        <hr />
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group ">
+        <h4>Pregunta</h4>
+        <div class="col-md-10" style="min-width:950px">
+            @Html.EditorFor(model => model.LaPregunta, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LaPregunta, "", new { @class = "text-danger" })
+
+        </div>
+        <br />
+
+    </div>
+
+
+    <div class="form-group">
+        <h4>Ubicacion Imagen</h4>
+        <div class="col-md-10" style="max-width:500px">
+            @if (Model.Imagen == null)
+            {
+                @Html.Label("Sin Imagen");*@
+
+            @*}
+            else
+            {
+                @Html.Label(Model.Imagen,Model.Imagen);
+            }
+
+            <br />
+
+        </div>
+    </div>
+    <div class="form-group">
+        <h4>Cambiar Imagen</h4>
+        <input type="file" name="file" accept="image/*" />
+
+    </div>
+    <br />
+
+    <h2>Categoria</h2>
+    @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.categoria.Id, "", new { @class = "text-danger" })
+    @Html.EditorFor(model => model.categoria.LaCategoria, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.categoria.LaCategoria, "", new { @class = "text-danger" })
+    <br />
+    <h2>Cambiar Categoria</h2>
+    @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.categoria.Id, "", new { @class = "text-danger" })
+
+    <br />
+    @Html.DropDownList("TipoPregunta", (SelectList)ViewBag.categoriaTipoPregunta, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.tipoPregunta.Id, "", new { @class = "text-danger" })
+
+    <br />
+
+    @Html.DropDownList("Nivel", (SelectList)ViewBag.categoriaNivel, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.nivel.Id, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button type="submit" , class="AzulButton">Crear</button>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>*@
+
+

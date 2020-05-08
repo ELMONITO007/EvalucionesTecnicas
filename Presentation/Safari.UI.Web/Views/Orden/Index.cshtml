@@ -54,20 +54,20 @@
     </div>
     <div>
 
-        <table class="table">
+        <table class="table-bordered col-md-12 table-striped ">
             <tr>
                 <th>
-                    <h4>Pregunta</h4>
+                    <h4 style="text-align:center">Pregunta</h4>
                 </th>
 
                 <th>
 
-                    <h4> Respuesta</h4>
+                    <h4 style="text-align:center"> Respuesta</h4>
 
                 </th>
                 <th>
 
-                    <h4>Orden</h4>
+                    <h4 style="text-align:center">Orden</h4>
 
                 </th>
 
@@ -77,19 +77,19 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td style="max-width:600px">
                         @Html.DisplayFor(modelItem => item.pregunta.LaPregunta)
                     </td>
 
-                    <td>
+                    <td style="max-width:500px">
                         @Html.DisplayFor(modelItem => item.LaRespuesta)
                     </td>
-                    <td>
+                    <td style="max-width:200px">
 
                         @Html.DisplayFor(modelItem => item.NumeroOrden)
 
                     </td>
-                    <td>
+                    <td style="max-width:400px">
                         @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                         @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
                         @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
@@ -98,12 +98,13 @@
             }
 
         </table>
+        
     </div>
     <div>
-        <p>
-            <input type="button" class="AzulButton " style="float:right" value="Crear" onclick="location.href='@Url.Action("Create", "Orden")'" />
-        </p>
 
+        <p>
+            <input type="button" class="AzulButton " style="float:left" value="Crear" onclick="location.href='@Url.Action("Create", "Orden")'" />
+        </p>
 
     </div>
 </div>

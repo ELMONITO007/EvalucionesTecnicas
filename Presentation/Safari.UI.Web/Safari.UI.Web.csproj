@@ -2108,7 +2108,8 @@
     <Content Include="Views\Pregunta\Index.cshtml" />
     <Content Include="Views\Pregunta\Create.cshtml" />
     <Content Include="Views\Pregunta\Details.cshtml" />
-    <Content Include="Views\Pregunta\TestAdjunto.cshtml" />
+    <Content Include="Views\Pregunta\Edit.cshtml" />
+    <Content Include="Views\Pregunta\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

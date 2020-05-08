@@ -145,7 +145,7 @@ namespace Safari.Data
         }
         public List<Pregunta> LeerPorTipoDePregunta(int id)
         {
-            const string SQL_STATEMENT = "select categoria, p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria where p.activo=1 and ID_TipoPregunta=@ID_TipoPregunta";
+            const string SQL_STATEMENT = "select Nivel, tp.TipoPregunta, categoria, p.ID_Pregunta,p.Pregunta,p.Imagen,p.ID_Nivel,p.ID_TipoPregunta,c.ID_Categoria from pregunta as p inner join PreguntaCategoria as pc on p.ID_Pregunta=pc.ID_Pregunta inner join Categoria as c on c.ID_Categoria=pc.ID_Categoria inner join TipoPregunta as tp on tp.ID_TipoPregunta =p.ID_TipoPregunta inner join NivelPregunta as np on np.ID_Nivel = p.ID_Nivel where p.activo=1 and p.ID_TipoPregunta=@ID_TipoPregunta";
 
             List<Pregunta> result = new List<Pregunta>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);

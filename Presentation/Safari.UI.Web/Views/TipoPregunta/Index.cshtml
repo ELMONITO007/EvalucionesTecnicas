@@ -6,14 +6,16 @@
 }
 
     <link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
-    <div>
+ 
+    <div class="col-md-2">
         @using (Html.BeginForm())
         {
            
         }
-        <table class="table">
+        <br />
+        <table class="table table-bordered table-striped">
             <tr>
-                <th>
+                <th style=" min-width:220px">
                     <h4>Tipo de Pregunta</h4>
                 </th>
                 <th></th>
@@ -22,10 +24,10 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td >
                         @Html.DisplayFor(modelItem => item.TipoDePregunta)
                     </td>
-                    <td>
+                    <td style=" min-width:220px">
                         @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                         @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
                         @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
