@@ -25,6 +25,15 @@ namespace Safari.Data
             orden.pregunta.categoria.LaCategoria = GetDataValue<string>(dr, "Categoria");
             return orden;
         }
+        private Orden LoadOrdenmin(IDataReader dr)
+        {
+            Orden orden = new Orden();
+            orden.Id = GetDataValue<int>(dr, "ID_Respuesta");
+            orden.NumeroOrden = GetDataValue<int>(dr, "Orden");
+            orden.LaRespuesta = GetDataValue<string>(dr, "Respuesta");
+           
+            return orden;
+        }
 
 
         public Orden Create(Orden entity)
@@ -109,7 +118,7 @@ namespace Safari.Data
                 {
                     while (dr.Read())
                     {
-                        Orden orden = LoadOrden(dr);
+                        Orden orden = LoadOrdenmin(dr);
                         result.Add(orden);
                     }
                 }
@@ -119,7 +128,7 @@ namespace Safari.Data
 
         public void Update(Orden entity)
         {
-            const string SQL_STATEMENT = "update Respuesta set Respuesta=@Respuesta,Orden=@Orden,ID_Pregunta=@ID_Pregunta where ID_Respuesta=@Id ";
+            const string SQL_STATEMENT = "update Respuesta set Respuesta=@Respuesta,Orden=@Orden where ID_Respuesta=@Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -145,7 +154,7 @@ namespace Safari.Data
                 {
                     while (dr.Read())
                     {
-                        Orden orden = LoadOrden(dr);
+                        Orden orden = LoadOrdenmin(dr);
                         result.Add(orden);
                     }
                 }

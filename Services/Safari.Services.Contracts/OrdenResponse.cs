@@ -16,5 +16,8 @@ namespace Safari.Services.Contracts
         public Orden obtenerUno { get; set; }
         [DataMember]
         public Orden agregar { get; set; }
+
+        [DataMember]
+        public List<int> OrdenDiponible { get; set; }
     }
 }

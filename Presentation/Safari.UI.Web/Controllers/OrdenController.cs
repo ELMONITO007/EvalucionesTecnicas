@@ -152,6 +152,41 @@ namespace Safari.UI.Web.Controllers
 
             return View();
         }
+        //Get Error Al crear
+
+            [HttpGet]
+            public ActionResult ErrorOrden()
+        {
+
+            return View();
+        }
+
+        public bool verificarNumeroOrden(int pregunta,int orden)
+        {
+            OrdenProcess ordenProcess2 = new OrdenProcess();
+            OrdenResponse ordenResponse = new OrdenResponse();
+            ordenResponse.OrdenDiponible = ordenProcess2.OrdenDiponible(pregunta);
+            int aux = 0;
+            foreach (int item in ordenResponse.OrdenDiponible)
+            {
+                if (item == orden)
+                {
+                    aux = 1;
+                }
+            }
+
+
+            if (aux==1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
+        }
 
         // POST: Orden/Create
         [HttpPost]
@@ -160,14 +195,23 @@ namespace Safari.UI.Web.Controllers
             try
             {
                 OrdenProcess ordenProcess = new OrdenProcess();
+            
                 RequestOrden request = new RequestOrden();
+              
                 request.Objeto.LaRespuesta= collection.Get("LaRespuesta");
                 request.Objeto.NumeroOrden=int.Parse(collection.Get("NumeroOrden"));
                 request.Objeto.pregunta.Id= int.Parse(collection.Get("pregunta.Id"));
-                ordenProcess.Agregar(request);
+                //obtener orden disponible
+
+             
+                    ordenProcess.Agregar(request);
+                    return RedirectToAction("Index");
+           
+
+
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+
             }
             catch
             {
@@ -230,7 +274,7 @@ namespace Safari.UI.Web.Controllers
             {
                 OrdenProcess ordenProcess = new OrdenProcess();
                 RequestOrden request = new RequestOrden();
-                request.Objeto.Id = int.Parse(collection.Get("Id"));
+                request.Objeto.Id =id;
                 ordenProcess.Eliminar(request);
                 return RedirectToAction("Index");
             }

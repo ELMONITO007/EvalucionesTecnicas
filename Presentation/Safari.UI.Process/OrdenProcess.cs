@@ -50,6 +50,12 @@ namespace Safari.UI.Process
             return response.ObtenerTodo;
         }
 
-
+        public List<int> OrdenDiponible(int id)
+        {
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("id", id);
+            var response = HttpGet<OrdenResponse>("api/Orden/ListaOrdenDisponible", parameters, MediaType.Json);
+            return response.OrdenDiponible;
+        }
     }
 }

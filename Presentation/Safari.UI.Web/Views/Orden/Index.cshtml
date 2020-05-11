@@ -12,7 +12,7 @@
         @using (Html.BeginForm())
         {
         <div class="form-group">
-            <div class="col-md-10">
+            <div class="col-md-10" style="max-width:350px">
 
                 <h4>Categoria de la Pregunta</h4>
                 @Html.DropDownList("Categoria", (SelectList)ViewBag.categoriaLista, new { @class = "form-control" })
@@ -35,7 +35,7 @@
 
                         <div class="form-group">
 
-                            <div class="col-md-10">
+                            <div class="col-md-10" style="max-width:850px">
                                 <h4>Pregunta</h4>
                                 @Html.DropDownList("Pregunta", (SelectList)ViewBag.preguntaLista, new { @class = "form-control" })
 

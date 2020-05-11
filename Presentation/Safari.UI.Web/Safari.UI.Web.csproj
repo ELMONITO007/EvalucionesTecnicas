@@ -218,6 +218,7 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MultipleChoiceController.cs" />
     <Compile Include="Controllers\NivelController.cs" />
     <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Controllers\PreguntaController.cs" />
@@ -2113,12 +2114,14 @@
     <Content Include="Views\Orden\Details.cshtml" />
     <Content Include="Views\Orden\Delete.cshtml" />
     <Content Include="Views\Orden\Edit.cshtml" />
+    <Content Include="Views\Orden\ErrorOrden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="ImagenesPregunta\" />
+    <Folder Include="Views\MultipleChoice\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

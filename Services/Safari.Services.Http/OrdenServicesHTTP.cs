@@ -182,5 +182,34 @@ namespace Safari.Services.Http
                 throw new HttpResponseException(httpError);
             }
         }
+
+
+        [HttpGet]
+        [Route("ListaOrdenDisponible")]
+        public List<int> OrdenDiponible(int id_pregunta)
+        {
+
+            try
+            {
+                var response = new OrdenResponse();
+                var bc = new OrdenComponent();
+                response.OrdenDiponible = bc.OrdenDiponible(id_pregunta);
+                return response.OrdenDiponible;
+            }
+            catch (Exception ex)
+            {
+
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+                throw new HttpResponseException(httpError);
+            }
+
+        }
+
+
+
     }
 }

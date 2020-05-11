@@ -70,5 +70,43 @@ namespace Safari.Business
 
             return result;
         }
+        public List<int> OrdenDiponible(int id_pregunta)
+        {
+            List<int> listaNumero = new List<int>();
+            List<int> listaFinal = new List<int>();
+            List<int> listaComparar = new List<int>();
+            listaComparar.Add(1);
+            listaComparar.Add(2);
+            listaComparar.Add(3);
+            listaComparar.Add(4);
+            listaComparar.Add(5);
+            List<Orden> result = default(List<Orden>);
+            result = listaRespuestaCorrecta(id_pregunta);
+            foreach (Orden item in result)
+            {
+                
+                    listaNumero.Add (item.NumeroOrden);
+                
+            }
+
+            foreach (int item in listaComparar)
+            {
+                int aux = 0;
+                foreach (int lista in listaNumero)
+                {
+                    if (item==lista)
+                    {
+                        aux = 1;
+                        break;
+                    }
+                }
+                if (aux==0)
+                {
+                    listaFinal.Add(item);
+                }
+
+            }
+            return listaFinal;
+        }
     }
 }

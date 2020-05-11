@@ -1,0 +1,18 @@
+﻿@model Safari.Entities.Orden
+
+@{
+    ViewBag.Title = "ErrorOrden";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <link href="~/Areas/Admin/Content/css/sb-admin-2.css" rel="stylesheet" />
+
+<div class="col-md-12">
+    <h4>El numero de orden ya existe para la pregunta seleccionada</h4>
+    <br />
+    <input type="button" class="AzulButton " style="float:left" value="Volver" onclick="location.href='@Url.Action("create", "Orden")'" />
+</div>
+<p>
+  
+ 
+</p>
